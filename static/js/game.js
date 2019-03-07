@@ -1,6 +1,7 @@
 window.onload = ()=>{
     Lib.eventDelegate();
-    Lib.htmlLoad('html/home.html');
+    let params = Lib.getUrlParams("t");
+    Lib.htmlLoad(`html/${params}.html`);
     Game.bindEvent();
 
     // str2.replace(/\[.*?\]/g, function (value) {

@@ -1,5 +1,13 @@
 let Lib = {
-    events:{},
+    getUrlParams:(index,search=location.href)=>{
+        let hashes = search.slice(search.indexOf('?') + 1).split('&');
+        let params = {};
+        hashes.map(hash => {
+            let [key, val] = hash.split('=');
+            params[key] = decodeURIComponent(val)
+        });
+        return params[index]
+    },
     htmlLoad:(url,dom=document.body,callback=undefined)=>{
         fetch(url).then(data => data.text()).then(data => {
             dom.innerHTML = data

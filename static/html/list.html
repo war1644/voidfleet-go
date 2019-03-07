@@ -1,142 +1,38 @@
-
-
-
-
-
-
-<div class="container-fluid vh-100 bg-dark text-white">
-    <div class="tab-content h-90">
-        <div class="tab-pane fade show active" id="player_map" role="tabpanel">
-            <div class="player_status row h-25">
-                <div class="card bg-dark text-left col-4">
-                    <p class="small">旗舰：<span>帝国战机</span></p>
-                    <p class="small">声望：<span>0</span></p>
-                    <p class="small">僚机：<span>0</span></p>
-                    <p class="small">金钱：<span>10000</span></p>
-                    <p class="small">能量电池：<span>0</span></p>
-                </div>
-                <div class="card bg-dark text-left col-8">
-                    <p class="x-small"><span class="badge badge-info badge-pill">信息</span>正在停靠空间站</p>
-                    <p class="x-small"><span class="badge badge-info badge-pill">信息</span>到达天狼星区殖民星球1</p>
-                    <p class="x-small"><span class="badge badge-primary badge-pill">新闻</span>海盗正在攻击天狼星区巡逻队</p>
-                    <p class="x-small"><span class="badge badge-success badge-pill">任务</span>运送能量电池完成</p>
-                </div>
-            </div>
-            <div class="card bg-dark text-center row">
-                <div class="card-header">
-                    <ul class="nav nav-tabs card-header-tabs">
-                        <li class="nav-item">
-                            <a class="nav-link active bg-dark" href="#">星区</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">星系</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">势力</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="galaxy_map vh-100 vw-100 d-none">
-                <span class="x-small badge badge-info move-dom line_box id-tiannang" id="">
-                    <b>天狼星区</b>
-                    <b class="line line1"></b>
-                </span>
-                    <span class="x-small badge badge-info move-dom line_box id-renma" id="">
-                    <b>人马座</b>
-                    <b class="line line2"></b>
-                </span>
-                    <span class="x-small badge badge-info move-dom line_box id-taiyang" id="">
-                    <b>太阳系</b>
-                    <b class="line line3"></b>
-                </span>
-                    <span class="x-small badge badge-info move-dom line_box id-beiluo" id="">
-                    <b>北落师门</b>
-                    <b class="line line4"></b>
-                </span>
-                    <span class="x-small badge badge-info move-dom line_box id-beiji" id="">
-                    <b>北极星区</b>
-                    <b class="line line4"></b>
-                </span>
-                    <span class="x-small badge badge-info move-dom line_box id-x" id="">
-                    <b>X星区</b>
-                    <b class="line line4"></b>
-                </span>
-                </div>
-                <div class="star_map vh-100 vw-100">
-                    <span class="xx-small badge badge-info move-dom id-gate" id="">跳跃门</span>
-                    <span class="xx-small badge badge-info move-dom id-star1" id="">殖民星球1</span>
-                    <span class="xx-small badge badge-info move-dom id-star2" id="">殖民星球2</span>
-                    <span class="xx-small badge badge-info move-dom id-star3" id="">殖民星球3</span>
-                    <span class="xx-small badge badge-info move-dom id-station" id="">空间站A</span>
-                    <span class="xx-small badge badge-info move-dom id-pirate_base" id="">海盗基地</span>
-                    <span class="xx-small badge badge-info move-dom id-outpost" id="">军事前哨</span>
-                    <span class="xx-small badge badge-warning move-dom id-main_fleet" id="">主力舰队</span>
-                    <span class="xx-small badge badge-warning move-dom id-outpost_fleet" id="">巡逻舰队</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="tab-pane fade" id="player_cargo" role="tabpanel">
-            cargo
-        </div>
-        <div class="tab-pane fade" id="player_fleet" role="tabpanel">
-            fleet
-        </div>
-        <div class="tab-pane fade" id="player_base" role="tabpanel">
-            base
-        </div>
-        <div class="tab-pane fade" id="player_system" role="tabpanel">
-            system
-        </div>
-    </div>
-
-
-    <div class="menu h-10">
-        <ul class="nav nav-tabs row" id="myTab" role="tablist">
-            <li class="nav-item col"><a class="nav-link active col btn btn-primary" id="player_map-tab" data-toggle="tab" href="#player_map" role="tab" aria-selected="true">map</a></li>
-            <li class="nav-item col"><a class="nav-link col btn btn-primary" id="player_cargo-tab" data-toggle="tab" href="#player_cargo" role="tab" aria-selected="false">cargo</a></li>
-            <li class="nav-item col"><a class="nav-link col btn btn-primary" id="player_fleet-tab" data-toggle="tab" href="#player_fleet" role="tab" aria-selected="false">fleet</a></li>
-            <li class="nav-item col"><a class="nav-link col btn btn-primary" id="player_base-tab" data-toggle="tab" href="#player_base" role="tab" aria-selected="false">base</a></li>
-            <li class="nav-item col"><a class="nav-link col btn btn-primary" id="player_system-tab" data-toggle="tab" href="#player_system" role="tab" aria-selected="false">system</a></li>
+<div class="container-fluid vh-100">
+    <div class="row">
+        <ul class="list-group h-25 col" style="overflow-y: scroll;" >
+            <li class="list-group-item d-flex justify-content-between align-items-center active">
+                Active list item
+                <span class="badge badge-secondary badge-pill">pill1</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                List item
+                <span class="badge badge-secondary badge-pill">pill2</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                List item
+                <span class="badge badge-secondary badge-pill">pill2</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                List item
+                <span class="badge badge-secondary badge-pill">pill2</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                List item
+                <span class="badge badge-secondary badge-pill">pill2</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                List item
+                <span class="badge badge-secondary badge-pill">pill2</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                List item
+                <span class="badge badge-secondary badge-pill">pill2</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                List item
+                <span class="badge badge-secondary badge-pill">pill2</span>
+            </li>
         </ul>
     </div>
 </div>
-
-<!-- Nav tabs -->
-<ul class="nav nav-tabs" id="navId">
-    <li class="nav-item">
-        <a href="#tab1Id" class="nav-link active">Active</a>
-    </li>
-    <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-           aria-expanded="false">Dropdown</a>
-        <div class="dropdown-menu">
-            <a class="dropdown-item" href="#tab2Id">Action</a>
-            <a class="dropdown-item" href="#tab3Id">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#tab4Id">Action</a>
-        </div>
-    </li>
-    <li class="nav-item">
-        <a href="#tab5Id" class="nav-link">Another link</a>
-    </li>
-    <li class="nav-item">
-        <a href="#" class="nav-link disabled">Disabled</a>
-    </li>
-</ul>
-
-<!-- Tab panes -->
-<div class="tab-content">
-    <div class="tab-pane fade show active" id="tab1Id" role="tabpanel"></div>
-    <div class="tab-pane fade" id="tab2Id" role="tabpanel"></div>
-    <div class="tab-pane fade" id="tab3Id" role="tabpanel"></div>
-    <div class="tab-pane fade" id="tab4Id" role="tabpanel"></div>
-    <div class="tab-pane fade" id="tab5Id" role="tabpanel"></div>
-</div>
-
-<script>
-    $('#navId a').click(e => {
-        e.preventDefault();
-        $(this).tab('show');
-    });
-</script>

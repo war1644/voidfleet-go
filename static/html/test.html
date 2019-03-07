@@ -1,124 +1,37 @@
-
-<ul class="nav nav-tabs row" id="myTab" role="tablist">
-    <li class="nav-item col"><a class="nav-link active col btn btn-primary" id="player_map-tab" data-toggle="tab" href="#player_map" role="tab" aria-selected="true">map</a></li>
-    <li class="nav-item col"><a class="nav-link col btn btn-primary" id="player_cargo-tab" data-toggle="tab" href="#player_cargo" role="tab" aria-selected="false">cargo</a></li>
-    <li class="nav-item col"><a class="nav-link col btn btn-primary" id="player_fleet-tab" data-toggle="tab" href="#player_fleet" role="tab" aria-selected="false">fleet</a></li>
-    <li class="nav-item col"><a class="nav-link col btn btn-primary" id="player_base-tab" data-toggle="tab" href="#player_base" role="tab" aria-selected="false">base</a></li>
-    <li class="nav-item col"><a class="nav-link col btn btn-primary" id="player_system-tab" data-toggle="tab" href="#player_system" role="tab" aria-selected="false">system</a></li>
-</ul>
-<div class="tab-content border">
-    <div class="tab-pane fade show active" id="player_map" role="tabpanel">
-        map
-    </div>
-    <div class="tab-pane fade" id="player_cargo" role="tabpanel">
-        cargo
-    </div>
-    <div class="tab-pane fade" id="player_fleet" role="tabpanel">
-        fleet
-    </div>
-    <div class="tab-pane fade" id="player_base" role="tabpanel">
-        base
-    </div>
-    <div class="tab-pane fade" id="player_system" role="tabpanel">
-        system
-    </div>
-</div>
-
-
-
-
-
-
-<div class="container-fluid d-flex vh-100">
-    <div class="row flex-fill">
-        <div class="row flex-fill h-25">
+<div class="container-fluid d-flex flex-column vh-100">
+    <div class="col flex-fill h-25 border">
+        <div class="d-flex flex-fill h-100">
             <div class="col-4 border border-primary">
-                Booking
+                left
             </div>
             <div class="col-8 border border-primary">
-                Info
+                right
             </div>
         </div>
-        <div class="col flex-fill h-50 border border-primary">
-            <div class="card border-primary">
-                <div class="card-body">
-                    <h4 class="card-title">Title</h4>
-                    <p class="card-text">Text</p>
-                </div>
+    </div>
+    <div class="col flex-fill h-25 border">
+        <div class="row flex-fill h-100">
+            <div class="col-2 border">
+                col
+            </div>
+            <div class="col-4 border">
+                col
+            </div>
+            <div class="col-6 border">
+                col
             </div>
         </div>
-        <div class="col flex-fill h-25 border border-primary">
-            <div class="card border-primary">
-                <div class="card-body">
-                    <h4 class="card-title">Title</h4>
-                    <p class="card-text">Text</p>
-                </div>
-            </div>
-        </div>
+
+    </div>
+    <div class="col flex-fill h-25 border">
+        <h4 class="card-title">Title1</h4>
+    </div>
+    <div class="col flex-fill h-25 border">
+        <h4 class="card-title">Title2</h4>
     </div>
 </div>
 
 
-<div class="container-fluid d-flex vh-100 menu-base d-none">
-    <div class="row flex-fill text-white ">
-        <div id="game_menu" class="col flex-fill h-25 card bg-dark">
-            <div class="card-body">
-                <div class="row">
-                    <button type="button" class="col btn btn-primary">地图</button>
-                    <button type="button" class="col btn btn-primary">基地</button>
-                    <button type="button" class="col btn btn-primary">货仓</button>
-                    <button type="button" class="col btn btn-primary">舰队</button>
-                    <button type="button" class="col btn btn-primary">系统</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="container-fluid d-flex vh-100 menu-cargo d-none">
-    <div class="row flex-fill text-white ">
 
-        <div id="game_menu" class="col flex-fill h-25 card bg-dark">
-            <div class="card-body">
-                <div class="row">
-                    <button type="button" class="col btn btn-primary">地图</button>
-                    <button type="button" class="col btn btn-primary">基地</button>
-                    <button type="button" class="col btn btn-primary">货仓</button>
-                    <button type="button" class="col btn btn-primary">舰队</button>
-                    <button type="button" class="col btn btn-primary">系统</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="container-fluid d-flex vh-100 menu-fleet d-none">
-    <div class="row flex-fill text-white ">
 
-        <div id="game_menu" class="col flex-fill h-25 card bg-dark">
-            <div class="card-body">
-                <div class="row">
-                    <button type="button" class="col btn btn-primary">地图</button>
-                    <button type="button" class="col btn btn-primary">基地</button>
-                    <button type="button" class="col btn btn-primary">货仓</button>
-                    <button type="button" class="col btn btn-primary">舰队</button>
-                    <button type="button" class="col btn btn-primary">系统</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="container-fluid d-flex vh-100 menu-system d-none">
-    <div class="row flex-fill text-white ">
 
-        <div id="game_menu" class="col flex-fill h-25 card bg-dark">
-            <div class="card-body">
-                <div class="row">
-                    <button type="button" class="col btn btn-primary">地图</button>
-                    <button type="button" class="col btn btn-primary">基地</button>
-                    <button type="button" class="col btn btn-primary">货仓</button>
-                    <button type="button" class="col btn btn-primary">舰队</button>
-                    <button type="button" class="col btn btn-primary">系统</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
