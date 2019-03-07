@@ -5,6 +5,9 @@ import (
 	"encoding/base64"
 	"fmt"
 	"github.com/zserge/webview"
+	"golang.org/x/image/font"
+	"golang.org/x/image/font/inconsolata"
+	"golang.org/x/image/math/fixed"
 	"html/template"
 	"image"
 	"image/color"
@@ -13,23 +16,20 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
-	"golang.org/x/image/font"
-	"golang.org/x/image/font/inconsolata"
-	"golang.org/x/image/math/fixed"
 )
 
-var frame string                         // game frames
-var rootDir string                       // current directory
-var events chan string                   // keyboard events
-var gameOver = false                     // end of game
-var W, H = 800, 600 // width and height of the window
-var frameRate int                        // how many frames to show per second (fps)
-var gameDelay int                        // delay time added to each game loop
+var frame string       // game frames
+var rootDir string     // current directory
+var events chan string // keyboard events
+var gameOver = false   // end of game
+var W, H = 800, 600    // width and height of the window
+var frameRate int      // how many frames to show per second (fps)
+var gameDelay int      // delay time added to each game loop
 var assetImages map[string]image.Image
 var html string
+
 const WWW = "/static/"
 const PORT = ":1212"
-
 
 var asset = [][2]string{
 	{"background", "asset/img/test.png"},
@@ -45,8 +45,8 @@ func init() {
 		log.Fatal(err)
 	}
 
-	frameRate = 60 // 50 fps
-	gameDelay = 20 // 20 ms delay
+	frameRate = 60 // fps
+	gameDelay = 10 // 20 ms delay  maybe is cpu
 	//sprites = getImage(dir + "/public/images/sprites.png") // spritesheet
 	//background = getImage(dir + "/public/images/bg.png")   // background image
 }
@@ -80,7 +80,7 @@ func main() {
 	err := webview.Open("Void fleet",
 		prefix+WWW+"index.html", W, H, true)
 	if err != nil {
-		fmt.Println("webview.Open error : ",err)
+		fmt.Println("webview.Open error : ", err)
 	}
 }
 
@@ -109,11 +109,11 @@ func app(prefixChannel chan string) {
 	mux.Handle(WWW, http.StripPrefix(WWW, http.FileServer(http.Dir(rootDir+WWW))))
 	mux.HandleFunc("/start", start)
 	mux.HandleFunc("/frame", loopFrame)
-	//mux.HandleFunc("/key", captureKeys)
+	mux.HandleFunc("/key", captureKeys)
 	prefixChannel <- "http://127.0.0.1" + PORT
 	err := http.ListenAndServe(PORT, mux)
 	if err != nil {
-		fmt.Println("http.ListenAndServe error : ",err)
+		fmt.Println("http.ListenAndServe error : ", err)
 	}
 }
 
@@ -123,11 +123,14 @@ func start(w http.ResponseWriter, r *http.Request) {
 	go generateFrames()
 	err := t.Execute(w, 1000/frameRate)
 	if err != nil {
-		fmt.Println("t.Execute error : ",err)
+		fmt.Println("t.Execute error : ", err)
 	}
 }
 
 // capture keyboard events
+func captureKeys(w http.ResponseWriter, r *http.Request) {
+
+}
 
 // get the game frames
 func loopFrame(w http.ResponseWriter, r *http.Request) {

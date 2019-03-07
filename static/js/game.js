@@ -1,13 +1,19 @@
 window.onload = ()=>{
     Lib.eventDelegate();
-    Lib.htmlLoad('html/start.html')
-    Game.bindEvent()
+    Lib.htmlLoad('html/home.html');
+    Game.bindEvent();
+
+    // str2.replace(/\[.*?\]/g, function (value) {
+    //     let key = value.substring(1, value.length - 1);
+    //     return emojiMap[key];
+    // });
+
 };
 
 
 let Game = {
     start:()=>{
-        Lib.htmlLoad('html/home.html')
+        Lib.htmlLoad('html/home.html');
         let imgDom = document.querySelector("#image");
         let loop = ()=>{
             Lib.curl('/frame', (data)=>{
@@ -26,5 +32,13 @@ let Game = {
     bindEvent:()=>{
         Event.add("#save1",Game.start);
         Event.add("#save2",Game.start);
+
     },
+    menuEvent:()=>{
+        //
+        Event.add("#save2",Game.start);
+        Event.add("#save2",Game.start);
+        Event.add("#save2",Game.start);
+        Event.add("#save2",Game.start);
+    }
 };

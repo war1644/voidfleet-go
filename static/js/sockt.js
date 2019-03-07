@@ -4,6 +4,7 @@ let Sock = {
         //请求服务器握手
         WS = new WebSocket("ws://127.0.0.1:8416");
         //握手成功触发
+
         WS.onopen = function(){
             console.log("握手成功");
             if(WS.readyState==1){
@@ -21,6 +22,9 @@ let Sock = {
         WS.onerror = function(e){
             console.log("error:"+e);
         };
+        WS.onclose = function (e) {
+            console.log("onclose:",e);
+        }
     }
 
 }

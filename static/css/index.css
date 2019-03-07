@@ -1,0 +1,179 @@
+.h-10 {
+    height: 10%!important
+}
+.h-15 {
+    height: 15%!important
+}
+.h-20 {
+    height: 20%!important
+}
+.h-60 {
+    height: 60%!important
+}
+.h-65 {
+    height: 65%!important
+}
+.h-85 {
+    height: 85%!important
+}
+.h-90 {
+    height: 90%!important
+}
+
+.container-fluid {
+    padding-right: 0;
+    padding-left: 0;
+}
+.row {
+    margin-right: 0;
+    margin-left: 0;
+}
+.col, .col-1, .col-10, .col-11, .col-12, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-auto, .col-lg, .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-auto, .col-md, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-auto, .col-sm, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-auto, .col-xl, .col-xl-1, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-auto {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+p {
+    margin: 0;
+}
+
+.x-small {
+    font-size: 60%;
+    font-weight: 400
+}
+
+.xx-small {
+    font-size: 50%;
+    font-weight: 400
+}
+
+
+.move-dom {
+    position: absolute;
+}
+
+/*星系图*/
+.id-tiannang {
+    left: 73vw;
+    top: 22vh;
+}
+.id-beiluo {
+    left: 30vw;
+    top: 33vh;
+}
+.id-taiyang {
+    left: 50vw;
+    top: 10vh;
+}
+.id-renma {
+    left: 7vw;
+    top: 18vh;
+}
+.id-beiji {
+    left: 40vw;
+    top: 25vh;
+}
+.id-x {
+    left: 5vw;
+    top: 45vh;
+}
+
+/*星区图*/
+.id-pirate_base {
+    left: 73vw;
+    top: 22vh;
+}
+.id-star1 {
+    left: 40vw;
+    top: 44vh;
+}
+.id-star2 {
+    left: 50vw;
+    top: 10vh;
+}
+.id-star3 {
+    left: 80vw;
+    top: 40vh;
+}
+.id-station {
+    left: 10vw;
+    top: 20vh;
+}
+.id-gate {
+    left: 45vw;
+    top: 27vh;
+}
+.id-outpost {
+    left: 15vw;
+    top: 32vh;
+}
+
+/*舰队*/
+.id-main_fleet{
+    left: 10vw;
+    top: 15vh;
+}
+.id-outpost_fleet{
+    left: 55vw;
+    top: 40vh;
+}
+
+.line_box{
+    position: relative;
+}
+.line1{
+    display: inline-block;
+    width: 1px;
+    height: 100px;
+    background: #f40;
+    position: absolute;
+    top:-103px;
+    left: 35px;
+    transform:rotate(-47deg);
+    -webkit-transform-origin: left bottom;
+    -o-transform-origin: left bottom;
+    -ms-transform-origin: left bottom;
+    transform-origin: left bottom;
+}
+.line2{
+    display: inline-block;
+    width: 1px;
+    height: 100px;
+    background: #f40;
+    position: absolute;
+    bottom:-5px;
+    left: 25px;
+    transform:rotate(145deg);
+    -webkit-transform-origin: left bottom;
+    -o-transform-origin: left bottom;
+    -ms-transform-origin: left bottom;
+    transform-origin: left bottom;
+}
+.line3{
+    display: inline-block;
+    width: 1px;
+    height: 140px;
+    background: #f40;
+    position: absolute;
+    bottom:8px;
+    left: -5px;
+    transform:rotate(-106deg);
+    -webkit-transform-origin: left bottom;
+    -o-transform-origin: left bottom;
+    -ms-transform-origin: left bottom;
+    transform-origin: left bottom;
+}
+.line4{
+    display: inline-block;
+    width: 1px;
+    height: 145px;
+    background: #f40;
+    position: absolute;
+    top:-136px;
+    left: 62px;
+    transform:rotate(66deg);
+    -webkit-transform-origin: left bottom;
+    -o-transform-origin: left bottom;
+    -ms-transform-origin: left bottom;
+    transform-origin: left bottom;
+}
