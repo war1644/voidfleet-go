@@ -63,6 +63,9 @@ p {
 }
 
 /*星系图*/
+.map-apex{
+    position: relative;
+}
 .id-tiannang {
     left: 73vw;
     top: 22vh;
@@ -88,7 +91,7 @@ p {
     top: 45vh;
 }
 
-/*星区图*/
+/*星区图 0,7 80,7 0,64 80,64*/
 .id-pirate_base {
     left: 73vw;
     top: 22vh;
@@ -106,8 +109,8 @@ p {
     top: 40vh;
 }
 .id-station {
-    left: 10vw;
-    top: 20vh;
+    left: 3vw;
+    top: 23vh;
 }
 .id-gate {
     left: 45vw;
@@ -126,64 +129,4 @@ p {
 .id-outpost_fleet{
     left: 55vw;
     top: 40vh;
-}
-
-.line_box{
-    position: relative;
-}
-.line1{
-    display: inline-block;
-    width: 1px;
-    height: 100px;
-    background: #f40;
-    position: absolute;
-    top:-103px;
-    left: 35px;
-    transform:rotate(-47deg);
-    -webkit-transform-origin: left bottom;
-    -o-transform-origin: left bottom;
-    -ms-transform-origin: left bottom;
-    transform-origin: left bottom;
-}
-.line2{
-    display: inline-block;
-    width: 1px;
-    height: 100px;
-    background: #f40;
-    position: absolute;
-    bottom:-5px;
-    left: 25px;
-    transform:rotate(145deg);
-    -webkit-transform-origin: left bottom;
-    -o-transform-origin: left bottom;
-    -ms-transform-origin: left bottom;
-    transform-origin: left bottom;
-}
-.line3{
-    display: inline-block;
-    width: 1px;
-    height: 140px;
-    background: #f40;
-    position: absolute;
-    bottom:8px;
-    left: -5px;
-    transform:rotate(-106deg);
-    -webkit-transform-origin: left bottom;
-    -o-transform-origin: left bottom;
-    -ms-transform-origin: left bottom;
-    transform-origin: left bottom;
-}
-.line4{
-    display: inline-block;
-    width: 1px;
-    height: 145px;
-    background: #f40;
-    position: absolute;
-    top:-136px;
-    left: 62px;
-    transform:rotate(66deg);
-    -webkit-transform-origin: left bottom;
-    -o-transform-origin: left bottom;
-    -ms-transform-origin: left bottom;
-    transform-origin: left bottom;
 }
