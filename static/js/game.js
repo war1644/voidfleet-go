@@ -1,9 +1,10 @@
 window.onload = ()=>{
     Lib.eventDelegate();
     let params = Lib.getUrlParams("t");
-    Lib.htmlLoad(`html/${params}.html`);
+    if (!params) params = 'start';
+    Lib.loadHtml(`html/${params}.html`);
     Game.bindEvent();
-
+    Game.keyListen();
     // str2.replace(/\[.*?\]/g, function (value) {
     //     let key = value.substring(1, value.length - 1);
     //     return emojiMap[key];
@@ -14,21 +15,26 @@ window.onload = ()=>{
 
 let Game = {
     start:()=>{
-        Lib.htmlLoad('html/home.html');
-        let imgDom = document.querySelector("#image");
+        let imgDom;
+        // Lib.loadHtml('html/fight.html',document.body,()=>{
+        //     imgDom = document.querySelector(".fight-screen");
+        //     alert(JSON.stringify(imgDom));
+        // });
         let loop = ()=>{
-            Lib.curl('/frame', (data)=>{
-                imgDom.setAttribute('src', data);
-            });
-        };
-
-        document.body.onkeydown = ()=>{
-            if ( event.keyCode === 13 ) {
-                event.preventDefault();
-            }
-            Lib.curl('/key?event='+event.which);
+            // Lib.get('/frame',(data)=>{
+            //     imgDom.setAttribute('src', data);
+            // });
+            Lib.loadHtml('/frame');
         };
         requestAnimationFrame(loop);
+    },
+    keyListen:()=>{
+        document.body.onkeydown = (event)=>{
+            // if ( event.key === "enter" ) {
+            //     event.preventDefault();
+            // }
+            Lib.get('/key?event='+event.key);
+        };
     },
     bindEvent:()=>{
         Event.add("#save1",Game.start);

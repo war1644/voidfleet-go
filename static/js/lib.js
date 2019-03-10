@@ -8,18 +8,18 @@ let Lib = {
         });
         return params[index]
     },
-    htmlLoad:(url,dom=document.body,callback=undefined)=>{
-        fetch(url).then(data => data.text()).then(data => {
+    loadHtml:(url,dom=document.body,callback=()=>{})=>{
+        fetch(url).then(data => data.text()).then(data =>
             dom.innerHTML = data
-        }).then(callback)
+        ).then(callback())
     },
 
-    // load:(url, callback=undefined)=>{
-    //     fetch(url).then(response => response.json()).then(callback)
-    // },
-    //
-    get:(url)=>{
-        return fetch(url).then(response => response.json())
+    load:(url,callback=()=>{})=>{
+        fetch(url).then(data => data.text()).then(callback(data))
+    },
+
+    get:(url,callback=(data)=>{})=>{
+        fetch(url).then(callback(response));
     },
 
     curl(url, data = {},type='GET') {

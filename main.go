@@ -8,69 +8,36 @@ import (
 	"golang.org/x/image/font"
 	"golang.org/x/image/font/inconsolata"
 	"golang.org/x/image/math/fixed"
-	"html/template"
 	"image"
 	"image/color"
 	"image/png"
-	"log"
 	"net/http"
 	"os"
 	"path/filepath"
 )
 
-var frame string       // game frames
-var rootDir string     // current directory
+var frame string
+var rootDir string
 var events chan string // keyboard events
-var gameOver = false   // end of game
-var W, H = 800, 600    // width and height of the window
-var frameRate int      // how many frames to show per second (fps)
-var gameDelay int      // delay time added to each game loop
-var assetImages map[string]image.Image
-var html string
+var gameOver = false
+var W, H = 800, 600
+
+//var fps = 60    // fps
+var gameDelay = 10 // game speed
 
 const WWW = "/static/"
 const PORT = ":1212"
 
-var asset = [][2]string{
-	{"background", "asset/img/test.png"},
-}
-
 func init() {
-	// events is a channel of string events that come from the front end
 	events = make(chan string, 1000)
-	// getting the current directory to access resources
 	var err error
 	rootDir, err = filepath.Abs(filepath.Dir(os.Args[0]))
 	if err != nil {
-		log.Fatal(err)
+		fmt.Println(err)
 	}
-
-	frameRate = 60 // fps
-	gameDelay = 10 // 20 ms delay  maybe is cpu
-	//sprites = getImage(dir + "/public/images/sprites.png") // spritesheet
-	//background = getImage(dir + "/public/images/bg.png")   // background image
-}
-
-func getImage(filePath string) image.Image {
-	imgFile, err := os.Open(filePath)
-	defer imgFile.Close()
-	if err != nil {
-		fmt.Println("Cannot read file:", err)
-	}
-	img, _, err := image.Decode(imgFile)
-	if err != nil {
-		fmt.Println("Cannot decode file:", err)
-	}
-	return img
-}
-
-func load(asset [][2]string) map[string]image.Image {
-	if len(asset) > 0 {
-		for _, v := range asset {
-			assetImages[v[0]] = getImage(rootDir + v[1])
-		}
-	}
-	return assetImages
+	load(asset)
+	sprites = assetImages["sprites"]
+	background = assetImages["background"]
 }
 
 func main() {
@@ -107,7 +74,7 @@ func printLine(img *image.RGBA, x, y int, label string, col color.RGBA) {
 func app(prefixChannel chan string) {
 	mux := http.NewServeMux()
 	mux.Handle(WWW, http.StripPrefix(WWW, http.FileServer(http.Dir(rootDir+WWW))))
-	mux.HandleFunc("/start", start)
+	go generateFrames()
 	mux.HandleFunc("/frame", loopFrame)
 	mux.HandleFunc("/key", captureKeys)
 	prefixChannel <- "http://127.0.0.1" + PORT
@@ -117,24 +84,22 @@ func app(prefixChannel chan string) {
 	}
 }
 
-// start the game
-func start(w http.ResponseWriter, r *http.Request) {
-	t, _ := template.ParseFiles(rootDir + "/static/html/home.html")
-	go generateFrames()
-	err := t.Execute(w, 1000/frameRate)
-	if err != nil {
-		fmt.Println("t.Execute error : ", err)
-	}
-}
-
-// capture keyboard events
 func captureKeys(w http.ResponseWriter, r *http.Request) {
-
+	ev := r.FormValue("event")
+	if ev == "" {
+		ev = "Space"
+	}
+	events <- ev
+	w.Header().Set("Cache-Control", "no-cache")
 }
 
-// get the game frames
 func loopFrame(w http.ResponseWriter, r *http.Request) {
-	str := "data:image/png;base64," + frame
+	str := "<img class='fight-screen' style='display: block; width: 100%; height: 100%' src=data:image/png;base64," + frame + ">"
 	w.Header().Set("Cache-Control", "no-cache")
-	w.Write([]byte(str))
+	len, err := w.Write([]byte(str))
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(len)
+	}
 }

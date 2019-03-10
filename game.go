@@ -8,11 +8,13 @@ import (
 	"math/rand"
 	"time"
 )
+
 var aliensPerRow = 8
 var aliensStartCol = 100
 var alienSize = 30
-var bombProbability = 0.005
-var bombSpeed = 10
+
+//var bombProbability = 0.005
+//var bombSpeed = 10
 
 // sprites
 var sprites image.Image
@@ -75,7 +77,6 @@ func createAlien(x, y int, sprite, alt image.Rectangle, points int) (s Sprite) {
 func generateFrames() {
 	rand.Seed(time.Now().UTC().UnixNano())
 	var aliens []Sprite
-	var bombs []Sprite
 	// game variables
 	loop := 0         // game loop
 	beamShot := false // the instance where the beam is shot
@@ -96,76 +97,24 @@ func generateFrames() {
 
 	// main game loop
 	for !gameOver {
-		// to slow up or speed up the game
+		// game speed
 		time.Sleep(time.Millisecond * time.Duration(gameDelay))
 		// if any of the keyboard events are captured
 		select {
 		case ev := <-events:
-			// exit the game
-			if ev == "81" { // q
-				gameOver = true
-			}
-			if ev == "32" { // space bar
+			if ev == " " { // space bar
 				if beam.Status == false {
 					beamShot = true
 				}
 				//playSound("shoot")
 			}
-			if ev == "39" { // right arrow key
-				laserCannon.Position.X += 10
-			}
-			if ev == "37" { // left arrow key
-				laserCannon.Position.X -= 10
-			}
+
 		default:
 		}
 
 		// create background
 		dst := image.NewRGBA(image.Rect(0, 0, W, H))
 		gift.New().Draw(dst, background)
-
-		// process aliens
-		for i := 0; i < len(aliens); i++ {
-			aliens[i].Position.X = aliens[i].Position.X + 3*alienDirection
-			if aliens[i].Status {
-				// if alien is hit by a laser beam
-				if collide(aliens[i], beam) {
-					// draw the explosion
-					aliens[i].FilterE.DrawAt(dst, sprites, image.Pt(aliens[i].Position.X, aliens[i].Position.Y), gift.OverOperator)
-					// alien dies, player scores points
-					aliens[i].Status = false
-					score += aliens[i].Points
-					//playSound("invaderkilled")
-					// reset the laser beam
-					resetBeam()
-				} else {
-					// show alternating aliens
-					if loop%2 == 0 {
-						aliens[i].Filter.DrawAt(dst, sprites, image.Pt(aliens[i].Position.X, aliens[i].Position.Y), gift.OverOperator)
-					} else {
-						aliens[i].FilterA.DrawAt(dst, sprites, image.Pt(aliens[i].Position.X, aliens[i].Position.Y), gift.OverOperator)
-					}
-					// drop torpedoes
-					if rand.Float64() < bombProbability {
-						bombs = append(bombs, dropBomb(aliens[i]))
-					}
-				}
-			}
-		}
-
-		// draw bombs, if laser cannon is hit, game over
-		for i := 0; i < len(bombs); i++ {
-			bombs[i].Position.Y = bombs[i].Position.Y + bombSpeed
-			bombs[i].Filter.DrawAt(dst, sprites, image.Pt(bombs[i].Position.X, bombs[i].Position.Y), gift.OverOperator)
-			if collide(bombs[i], laserCannon) {
-				gameOver = true
-				laserCannon.FilterE.DrawAt(dst, sprites, image.Pt(laserCannon.Position.X, laserCannon.Position.Y), gift.OverOperator)
-			}
-		}
-		// draw the laser cannon unless it's been destroyed
-		if !gameOver {
-			laserCannon.Filter.DrawAt(dst, sprites, image.Pt(laserCannon.Position.X, laserCannon.Position.Y), gift.OverOperator)
-		}
 
 		// move the aliens back and forth
 		if aliens[0].Position.X < alienSize || aliens[aliensPerRow-1].Position.X > W-(2*alienSize) {
