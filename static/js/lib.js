@@ -1,4 +1,17 @@
 let Lib = {
+    loopExec:(callback,fps=60)=>{
+        let lastTime,then=0;
+        let gameLoop = ()=>{
+            let now = Date.now();
+            lastTime = now - then;
+            if (lastTime>fps) {
+                callback();
+            }
+            window.requestAnimationFrame(gameLoop);
+        };
+        gameLoop();
+    },
+
     getUrlParams:(index,search=location.href)=>{
         let hashes = search.slice(search.indexOf('?') + 1).split('&');
         let params = {};

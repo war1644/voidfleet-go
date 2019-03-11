@@ -26,7 +26,7 @@ let Game = {
             // });
             Lib.loadHtml('/frame');
         };
-        requestAnimationFrame(loop);
+        Lib.loopExec(loop);
     },
     keyListen:()=>{
         document.body.onkeydown = (event)=>{
