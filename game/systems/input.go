@@ -1,9 +1,8 @@
 package systems
 
 import (
-	"ecs-pong/ecs"
-	"ecs-pong/game/components"
-	"github.com/gen2brain/raylib-go/raylib"
+	"void_fleet/ecs"
+	"void_fleet/game/components"
 )
 
 // Input ...
@@ -15,27 +14,24 @@ func NewInput() ecs.System {
 }
 
 // Process ...
-func (s *Input) Process(entityManager *ecs.EntityManager) {
-	if rl.WindowShouldClose() {
-		ecs.ShouldEngineStop = true
-		return
-	}
-	for _, e := range entityManager.FilterBy("input", "velocity") {
+func (s *Input) Update(world *ecs.World) {
+
+	for _, e := range world.FilterBy("input", "velocity") {
 		s.handleInput(e)
 	}
 }
 
 // Setup ...
-func (s *Input) Setup() {}
+func (s *Input) Start() {}
 
 // Teardown ...
-func (s *Input) Teardown() {}
+func (s *Input) Remove() {}
 
 func (s *Input) handleInput(e *ecs.Entity) {
-	input := e.Get("input").(*components.Input)
-	velocity := e.Get("velocity").(*components.Velocity)
-	input.Down = rl.IsKeyDown(rl.KeyS)
-	input.Up = rl.IsKeyDown(rl.KeyW)
+	input := e.GetComponent("input").(*components.Input)
+	velocity := e.GetComponent("velocity").(*components.Velocity)
+	input.Down = false
+	input.Up = true
 	velocity.Y = 0
 	if input.Down {
 		velocity.Y = 4

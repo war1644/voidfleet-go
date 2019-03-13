@@ -50,7 +50,7 @@ func (s *Ship) Refuel(player *Player) {
 }
 
 func (s *Ship) Repair(player *Player) {
-	repairPrice := maxHp - hp
+	repairPrice := s.maxHp - s.hp
 	if (player.credits - repairPrice) < 0 {
 		fmt.Println("没钱修理")
 	} else {

@@ -4,23 +4,40 @@ import (
 	"fmt"
 	"image"
 	"os"
+	"void_fleet/ecs"
 )
 
-var assetImages = make(map[string]image.Image)
-var asset = [][2]string{
-	{"background", "asset/img/bg.png"},
-	{"sprites", "asset/img/sprites.png"},
+type Load struct {
+	RootDir     string
+	assets      [][2]string
+	AssetImages map[string]image.Image
 }
 
-func load(assets [][2]string) {
-	if len(assets) > 0 {
-		for _, v := range assets {
-			assetImages[v[0]] = getImage(rootDir + "/" + v[1])
+func NewLoad(assets [][2]string, dir string) ecs.System {
+	return &Load{
+		RootDir:     dir,
+		assets:      assets,
+		AssetImages: make(map[string]image.Image),
+	}
+}
+
+func (s *Load) Start() {
+	if len(s.assets) > 0 {
+		for _, v := range s.assets {
+			s.AssetImages[v[0]] = s.getImage(s.RootDir + "/" + v[1])
 		}
 	}
 }
 
-func getImage(filePath string) image.Image {
+func (s *Load) Update(w *ecs.World) {
+
+}
+
+func (s *Load) Remove() {
+
+}
+
+func (s *Load) getImage(filePath string) image.Image {
 	imgFile, err := os.Open(filePath)
 	defer imgFile.Close()
 	if err != nil {

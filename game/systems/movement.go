@@ -1,38 +1,29 @@
 package systems
 
 import (
-	"ecs-pong/ecs"
-	"ecs-pong/game/components"
-	"github.com/gen2brain/raylib-go/raylib"
+	"void_fleet/ecs"
+	"void_fleet/game/components"
 )
 
-// Movement ...
 type Movement struct{}
 
-// NewMovement ...
 func NewMovement() ecs.System {
 	return &Movement{}
 }
 
-// Process ...
-func (s *Movement) Process(entityManager *ecs.EntityManager) {
-	if rl.WindowShouldClose() {
-		ecs.ShouldEngineStop = true
+func (s *Movement) Update(world *ecs.World) {
+
+	if world.Stop {
 		return
 	}
-	if ecs.ShouldEnginePause {
-		return
-	}
-	for _, e := range entityManager.FilterBy("position", "velocity") {
-		position := e.Get("position").(*components.Position)
-		velocity := e.Get("velocity").(*components.Velocity)
+	for _, e := range world.FilterBy("position", "velocity") {
+		position := e.GetComponent("position").(*components.Position)
+		velocity := e.GetComponent("velocity").(*components.Velocity)
 		position.X += velocity.X
 		position.Y += velocity.Y
 	}
 }
 
-// Setup ...
-func (s *Movement) Setup() {}
+func (s *Movement) Start() {}
 
-// Teardown ...
-func (s *Movement) Teardown() {}
+func (s *Movement) Remove() {}

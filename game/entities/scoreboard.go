@@ -1,9 +1,8 @@
 package entities
 
 import (
-	"ecs-pong/ecs"
-	"ecs-pong/game/components"
-	"github.com/gen2brain/raylib-go/raylib"
+	"void_fleet/ecs"
+	"void_fleet/game/components"
 )
 
 // NewScoreboard creates a new player with an id on a specific position x and y with a custom width and height.
@@ -21,7 +20,6 @@ func NewScoreboard(id string, x, y, width, height float32) (e *ecs.Entity) {
 			},
 			&components.Text{
 				Align:     components.TextAlignCenter,
-				Color:     rl.Beige,
 				FontSize:  40,
 				IsEnabled: true,
 			},

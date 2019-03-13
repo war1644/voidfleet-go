@@ -24,10 +24,6 @@ func init() {
 	if err != nil {
 		fmt.Println(err)
 	}
-	load(asset)
-
-	p := Player{}
-	fmt.Println(p)
 }
 
 func main() {
