@@ -1,4 +1,4 @@
-package main
+package game
 
 import (
 	"bytes"
@@ -10,12 +10,23 @@ import (
 	"math/rand"
 	"net/http"
 	"time"
+	"void_fleet/ecs"
 )
 
 var gameOver = false
 
 //var fps = 60    // fps
 var gameDelay = 10 // game speed
+
+func NewGame() {
+	world := ecs.NewWorld()
+	world.Start()
+	for !world.Stop {
+		world.Update()
+	}
+	world.Remove()
+}
+
 func generateFrames() {
 	rand.Seed(time.Now().UTC().UnixNano())
 	loop := 0 // game loop

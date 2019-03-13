@@ -1,4 +1,4 @@
-package main
+package systems
 
 import (
 	"golang.org/x/image/font"
