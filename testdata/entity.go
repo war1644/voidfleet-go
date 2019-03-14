@@ -1,34 +1,30 @@
-package ecs
+package testdata
 
 // game entity
-var (
-	baseId uint64
-)
+var baseId uint64 = 0
 
-func init() {
-	baseId = 0
+type Component interface {
+	Name() (name string)
 }
 
-//type Identifier interface {
-//	ID() uint64
-//}
-//
-//func (e Entity) ID() uint64 {
-//	return e.id
-//}
-
 type Entity struct {
-	id       uint64
-	parent   *Entity
-	children []Entity
+	Components []Component
+	id         uint64
+	parent     *Entity
+	children   []Entity
 }
 
 func (e *Entity) New() Entity {
 	return Entity{id: baseId + 1}
 }
 
-func (e *Entity) GetEntity() *Entity {
-	return e
+func (e *Entity) Get(name string) Component {
+	for _, c := range e.Components {
+		if c.Name() == name {
+			return c
+		}
+	}
+	return nil
 }
 
 func (e *Entity) AppendChild(child *Entity) {

@@ -1,13 +1,13 @@
-package ecs
+package testdata
 
 import (
 	"github.com/disintegration/gift"
 	"image"
 )
 
-type Component struct {
-	entity Entity
-}
+//type Component struct {
+//	entity Entity
+//}
 
 type PositionComponent struct {
 	Component

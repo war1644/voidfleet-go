@@ -1,17 +1,18 @@
-package ecs
+package testdata
 
-import (
-	"reflect"
-)
-
+//var systems []System
+//根管理
 type World struct {
-	systems      systems
-	sysIn, sysEx map[reflect.Type]reflect.Type
+	systems  []System
+	entities []*Entity
+}
+
+func New() *World {
+	return &World{systems: make([]System, 64)}
 }
 
 func (w *World) AddSystem(system System) {
 	w.systems = append(w.systems, system)
-	//sort.Sort(w.systems)
 }
 
 func (w *World) Systems() []System {

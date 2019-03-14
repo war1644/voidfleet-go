@@ -1,9 +1,9 @@
-package ecs
+package testdata
 
 import "image"
 
 // game System
-type systems []System
+//type systems []System
 
 type System interface {
 	Update(dt float32)
