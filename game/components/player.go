@@ -13,6 +13,10 @@ func (s *Player) Name() string {
 	return "player"
 }
 
+func (s *Player) AddCredits(c int) {
+	s.credits += c
+}
+
 func (s *Player) AddCargoGood(goods Goods) {
 	// v是copy还是引用？
 	v, ok := s.cargo[goods.name]

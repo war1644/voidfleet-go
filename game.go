@@ -1,4 +1,4 @@
-package game
+package main
 
 import (
 	"bytes"
@@ -11,20 +11,35 @@ import (
 	"net/http"
 	"time"
 	"void_fleet/ecs"
+	"void_fleet/game/systems"
 )
 
 var gameOver = false
+var asset = [][2]string{
+	{"background", "asset/img/bg.png"},
+	{"sprites", "asset/img/sprites.png"},
+}
 
-//var fps = 60    // fps
-var gameDelay = 10 // game speed
+//var fps = 60
+var gameDelay = 10
 
 func NewGame() {
+	rand.Seed(time.Now().UTC().UnixNano())
 	world := ecs.NewWorld()
+	NewSystem(world)
 	world.Start()
 	for !world.Stop {
+		time.Sleep(time.Millisecond * time.Duration(gameDelay))
 		world.Update()
 	}
 	world.Remove()
+}
+
+func NewSystem(world *ecs.World) {
+	world.AddSystem(
+		systems.NewLoad(asset, rootDir),
+	)
+
 }
 
 func generateFrames() {

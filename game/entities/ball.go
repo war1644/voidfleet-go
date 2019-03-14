@@ -1,8 +1,8 @@
 package entities
 
 import (
-	"ecs-pong/ecs"
-	"ecs-pong/game/components"
+	"void_fleet/ecs"
+	"void_fleet/game/components"
 )
 
 // NewBall creates a new ball with an id on a specific position x and y with a custom width and height.
