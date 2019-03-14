@@ -24,6 +24,6 @@ func (s *Movement) Update(world *ecs.World) {
 	}
 }
 
-func (s *Movement) Start() {}
+func (s *Movement) Start(world *ecs.World) {}
 
 func (s *Movement) Remove() {}

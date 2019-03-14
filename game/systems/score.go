@@ -36,7 +36,7 @@ func (s *Score) Update(world *ecs.World) {
 }
 
 // Setup ...
-func (s *Score) Start() {}
+func (s *Score) Start(world *ecs.World) {}
 
 // Teardown ...
 func (s *Score) Remove() {}

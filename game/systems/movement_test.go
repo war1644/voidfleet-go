@@ -1,13 +1,14 @@
 package systems_test
 
 import (
+	"fmt"
 	"testing"
 	"void_fleet/ecs"
 	"void_fleet/game/components"
 	"void_fleet/game/systems"
 )
 
-func TestMovement_Process_Position_Should_Not_Be_Changed_With_Velocity_Y_0(t *testing.T) {
+func TestMovement_System_Update(t *testing.T) {
 	world := ecs.NewWorld()
 	player := &ecs.Entity{
 		Components: []ecs.Component{
@@ -15,12 +16,12 @@ func TestMovement_Process_Position_Should_Not_Be_Changed_With_Velocity_Y_0(t *te
 			&components.Velocity{Y: 0},
 		},
 	}
-	world.AddEntity(player)
 	s := systems.NewMovement()
 	s.Update(world)
+	fmt.Println(player.GetComponent("position"))
 }
 
-func TestMovement_Process_Position_Should_Be_Changed_To_Y_1_With_Velocity_Y_1(t *testing.T) {
+func TestMovement_System_Update_Change1(t *testing.T) {
 	world := ecs.NewWorld()
 	player := &ecs.Entity{
 		Components: []ecs.Component{
@@ -31,9 +32,11 @@ func TestMovement_Process_Position_Should_Be_Changed_To_Y_1_With_Velocity_Y_1(t 
 	world.AddEntity(player)
 	s := systems.NewMovement()
 	s.Update(world)
+	fmt.Println(player.GetComponent("position"))
+
 }
 
-func TestMovement_Process_Position_Should_Be_Changed_To_Y_Minus_1_With_Velocity_Y_Minus_1(t *testing.T) {
+func TestMovement_System_Update_Change2(t *testing.T) {
 	world := ecs.NewWorld()
 	player := &ecs.Entity{
 		Components: []ecs.Component{
@@ -44,4 +47,5 @@ func TestMovement_Process_Position_Should_Be_Changed_To_Y_Minus_1_With_Velocity_
 	world.AddEntity(player)
 	s := systems.NewMovement()
 	s.Update(world)
+	fmt.Println(player.GetComponent("position"))
 }

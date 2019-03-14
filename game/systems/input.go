@@ -22,7 +22,7 @@ func (s *Input) Update(world *ecs.World) {
 }
 
 // Setup ...
-func (s *Input) Start() {}
+func (s *Input) Start(world *ecs.World) {}
 
 // Teardown ...
 func (s *Input) Remove() {}

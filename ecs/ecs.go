@@ -19,7 +19,7 @@ func (e *Entity) GetComponent(name string) Component {
 }
 
 type System interface {
-	Start()
+	Start(w *World)
 	Update(w *World)
 	Remove()
 }
@@ -46,7 +46,7 @@ func (w *World) Update() {
 
 func (w *World) Start() {
 	for _, system := range w.systems {
-		system.Start()
+		system.Start(w)
 	}
 }
 

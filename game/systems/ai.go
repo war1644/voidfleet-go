@@ -22,7 +22,7 @@ func (s *AI) Update(world *ecs.World) {
 	}
 }
 
-func (s *AI) Start() {}
+func (s *AI) Start(world *ecs.World) {}
 
 func (s *AI) Remove() {}
 

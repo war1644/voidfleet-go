@@ -27,7 +27,9 @@ func NewGalay(id string, x, y, width, height float32) (e *ecs.Entity) {
 				IsEnabled: true,
 			},
 			&components.Velocity{
-				Y: 0,
+				Y:         0,
+				X:         0,
+				IsEnabled: true,
 			},
 		},
 	}

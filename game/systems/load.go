@@ -21,7 +21,7 @@ func NewLoad(assets [][2]string, dir string) ecs.System {
 	}
 }
 
-func (s *Load) Start() {
+func (s *Load) Start(world *ecs.World) {
 	if len(s.assets) > 0 {
 		for _, v := range s.assets {
 			s.AssetImages[v[0]] = s.getImage(s.RootDir + "/" + v[1])

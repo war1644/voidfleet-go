@@ -48,7 +48,7 @@ func (s *Collision) Update(world *ecs.World) {
 }
 
 // Setup ...
-func (s *Collision) Start() {}
+func (s *Collision) Start(world *ecs.World) {}
 
 // Teardown ...
 func (s *Collision) Remove() {}

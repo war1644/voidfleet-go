@@ -1,20 +1,14 @@
 package components
 
 type Goods struct {
-	name          string
-	price         int
-	standardPrice int
+	GoodsName     string
+	Price         int
+	StandardPrice int
 	IsEquip       bool
 	quantity      int
-	describe      string
+	Describe      string
 }
 
 func (s *Goods) Name() string {
 	return "goods"
-}
-
-func (s *Goods) Sell() {
-}
-
-func (s *Goods) Buy() {
 }

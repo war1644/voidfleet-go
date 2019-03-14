@@ -3,10 +3,15 @@ package components
 import "fmt"
 
 type Player struct {
-	credits    int
-	kill       int
-	reputation int
-	cargo      map[string]Goods
+	Credits    int
+	Kill       int
+	Reputation int
+	Cargo      map[string]Goods
+	Year       int
+	Day        int
+	Planet     *Planet
+	GoodsCount int
+	Ship       Ship
 }
 
 func (s *Player) Name() string {
@@ -14,17 +19,17 @@ func (s *Player) Name() string {
 }
 
 func (s *Player) AddCredits(c int) {
-	s.credits += c
+	s.Credits += c
 }
 
 func (s *Player) AddCargoGood(goods Goods) {
 	// v是copy还是引用？
-	v, ok := s.cargo[goods.name]
+	v, ok := s.Cargo[goods.GoodsName]
 	if ok {
 		v.quantity += goods.quantity
-		s.cargo[goods.name] = v
+		s.Cargo[goods.GoodsName] = v
 	} else {
-		s.cargo[goods.name] = goods
+		s.Cargo[goods.GoodsName] = goods
 	}
 }
 

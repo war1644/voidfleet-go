@@ -11,7 +11,7 @@ func NewEvent() ecs.System {
 	return &Event{}
 }
 
-func (s *Event) Start() {
+func (s *Event) Start(world *ecs.World) {
 }
 
 func (s *Event) Update(w *ecs.World) {

@@ -3,17 +3,18 @@ package components
 import "fmt"
 
 type Ship struct {
-	name     string
-	price    int
-	describe string
-	hp       int
-	ep       int
-	maxHp    int
-	maxEp    int
-	cargo    int
-	speed    int
-	fuel     int
-	maxFuel  int
+	ShipName      string
+	Price         int
+	StandardPrice int
+	Describe      string
+	HP            int
+	EP            int
+	MaxHp         int
+	MaxEp         int
+	Cargo         int
+	Speed         int
+	Fuel          int
+	MaxFuel       int
 }
 
 func (s *Ship) Name() string {
@@ -21,41 +22,41 @@ func (s *Ship) Name() string {
 }
 
 func (s *Ship) CalculateFuel(fuelValue int) bool {
-	tmpFuel := s.fuel + fuelValue
+	tmpFuel := s.Fuel + fuelValue
 	if tmpFuel < 0 {
 		return false
 	}
-	s.fuel = tmpFuel
+	s.Fuel = tmpFuel
 	return true
 }
 
 func (s *Ship) CalculateHp(hpValue int) bool {
-	tmpHp := s.hp + hpValue
+	tmpHp := s.HP + hpValue
 	if tmpHp < 0 {
 		return false
 	}
-	s.hp = tmpHp
+	s.HP = tmpHp
 	return true
 }
 
 func (s *Ship) Refuel(player *Player) {
-	refuelPrice := s.maxFuel - s.fuel
-	if player.credits-refuelPrice < 0 {
+	refuelPrice := s.MaxFuel - s.Fuel
+	if player.Credits-refuelPrice < 0 {
 		fmt.Println("没钱加燃料")
 	} else {
 		fmt.Println("燃料已加满，花费{}", refuelPrice)
 		player.AddCredits(-refuelPrice)
-		s.fuel = s.maxFuel
+		s.Fuel = s.MaxFuel
 	}
 }
 
 func (s *Ship) Repair(player *Player) {
-	repairPrice := s.maxHp - s.hp
-	if (player.credits - repairPrice) < 0 {
+	repairPrice := s.MaxHp - s.HP
+	if (player.Credits - repairPrice) < 0 {
 		fmt.Println("没钱修理")
 	} else {
 		fmt.Println("修理完成，花费{}", repairPrice)
 		player.AddCredits(-repairPrice)
-		s.hp = s.maxHp
+		s.HP = s.MaxHp
 	}
 }
