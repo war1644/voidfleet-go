@@ -15,19 +15,22 @@ type Ship struct {
 	Speed         int
 	Fuel          int
 	MaxFuel       int
+	Count         int
 }
 
 func NewShip(shipName, shipDescribe string, shipHp, shipCargo, shipSpeed, shipPrice, shipFuel int) Ship {
 	return Ship{
-		Name:     shipName,
-		HP:       shipHp,
-		MaxHp:    shipHp,
-		Cargo:    shipCargo,
-		Speed:    shipSpeed,
-		Price:    shipPrice,
-		Fuel:     shipFuel,
-		MaxFuel:  shipFuel,
-		Describe: shipDescribe,
+		Name:          shipName,
+		HP:            shipHp,
+		MaxHp:         shipHp,
+		Cargo:         shipCargo,
+		Speed:         shipSpeed,
+		Price:         shipPrice,
+		StandardPrice: shipPrice,
+		Fuel:          shipFuel,
+		MaxFuel:       shipFuel,
+		Describe:      shipDescribe,
+		Count:         1,
 	}
 }
 

@@ -1,8 +1,8 @@
 package game
 
 type Galaxy struct {
-	NameList [6]string
-	List     map[string]*Planet
+	NameList []string
+	List     map[string][]*Planet
 	Current  string
 }
 

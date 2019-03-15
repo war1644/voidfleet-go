@@ -4,14 +4,10 @@ import (
 	"bytes"
 	"encoding/base64"
 	"fmt"
-	"github.com/disintegration/gift"
 	"image"
 	"image/png"
-	"math/rand"
 	"net/http"
 	"time"
-	"void_fleet/ecs"
-	"void_fleet/game/systems"
 )
 
 var gameOver = false
@@ -23,27 +19,7 @@ var asset = [][2]string{
 //var fps = 60
 var gameDelay = 10
 
-func NewGame() {
-	rand.Seed(time.Now().UTC().UnixNano())
-	world := ecs.NewWorld()
-	NewSystem(world)
-	world.Start()
-	for !world.Stop {
-		time.Sleep(time.Millisecond * time.Duration(gameDelay))
-		world.Update()
-	}
-	world.Remove()
-}
-
-func NewSystem(world *ecs.World) {
-	world.AddSystem(
-		systems.NewLoad(asset, rootDir),
-	)
-
-}
-
 func generateFrames() {
-	rand.Seed(time.Now().UTC().UnixNano())
 	loop := 0 // game loop
 	// main game loop
 	for !gameOver {
@@ -59,9 +35,9 @@ func generateFrames() {
 			}
 		default:
 		}
-		dst := image.NewRGBA(image.Rect(0, 0, W, H))
-		gift.New().Draw(dst, assetImages["background"])
-		createFrame(dst)
+		//dst := image.NewRGBA(image.Rect(0, 0, W, H))
+		//gift.New().Draw(dst, assetImages["background"])
+		//createFrame(dst)
 		//if gameOver {
 		//	//playSound("explosion")
 		//	time.Sleep(time.Second)

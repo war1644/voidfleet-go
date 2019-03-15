@@ -5,17 +5,19 @@ type Planet struct {
 	SpaceStation string
 	Galaxy       string
 	Distance     int
-	X            float32
-	Y            float32
+	X            int
+	Y            int
 	Goods        []Goods
 	Fleet        []Ship
 }
 
-func NewPlanet(name, galaxy string, x, y float32) *Planet {
+func NewPlanet(name, galaxy string, x, y int) *Planet {
 	return &Planet{
 		Name:   name,
 		Galaxy: galaxy,
 		X:      x,
 		Y:      y,
+		Fleet:  []Ship{},
+		Goods:  []Goods{},
 	}
 }
