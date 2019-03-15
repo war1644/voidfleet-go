@@ -30,7 +30,7 @@ func main() {
 	prefixChannel := make(chan string)
 	go app(prefixChannel)
 	prefix := <-prefixChannel
-	err := webview.Open("Void fleet",
+	err := webview.Open("Void Fleet",
 		prefix+WWW+"index.html", W, H, true)
 	if err != nil {
 		fmt.Println("webview.Open error : ", err)
@@ -40,7 +40,7 @@ func main() {
 func app(prefixChannel chan string) {
 	mux := http.NewServeMux()
 	mux.Handle(WWW, http.StripPrefix(WWW, http.FileServer(http.Dir(rootDir+WWW))))
-	go generateFrames()
+	go GameRun()
 	mux.HandleFunc("/frame", loopFrame)
 	mux.HandleFunc("/key", captureKeys)
 	prefixChannel <- "http://127.0.0.1" + PORT

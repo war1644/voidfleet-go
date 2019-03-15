@@ -5,11 +5,16 @@ type Game struct {
 	Ships  []Ship
 	Galaxy *Galaxy
 	IsJump bool
+	Stop   bool
+	Delay  int
+	Load   *Load
 }
 
 func NewGame() *Game {
 	game := &Game{
+		Delay:  10,
 		IsJump: true,
+		Stop:   false,
 		Goods:  []Goods{},
 		Ships:  []Ship{},
 		Galaxy: &Galaxy{

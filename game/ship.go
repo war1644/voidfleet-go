@@ -54,7 +54,7 @@ func (s *Ship) CalculateHp(hpValue int) bool {
 
 func (s *Ship) Refuel(player *Player) {
 	refuelPrice := s.MaxFuel - s.Fuel
-	if player.Credits-refuelPrice < 0 {
+	if player.Money-refuelPrice < 0 {
 		fmt.Println("没钱加燃料")
 	} else {
 		fmt.Println("燃料已加满，花费{}", refuelPrice)
@@ -65,7 +65,7 @@ func (s *Ship) Refuel(player *Player) {
 
 func (s *Ship) Repair(player *Player) {
 	repairPrice := s.MaxHp - s.HP
-	if (player.Credits - repairPrice) < 0 {
+	if (player.Money - repairPrice) < 0 {
 		fmt.Println("没钱修理")
 	} else {
 		fmt.Println("修理完成，花费{}", repairPrice)

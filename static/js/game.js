@@ -15,18 +15,18 @@ window.onload = ()=>{
 
 let Game = {
     start:()=>{
-        let imgDom;
+        Lib.loadHtml('html/home.html');
         // Lib.loadHtml('html/fight.html',document.body,()=>{
         //     imgDom = document.querySelector(".fight-screen");
         //     alert(JSON.stringify(imgDom));
         // });
         let loop = ()=>{
-            // Lib.get('/frame',(data)=>{
-            //     imgDom.setAttribute('src', data);
-            // });
-            Lib.loadHtml('/frame');
+            Lib.load('/frame',(data)=>{
+
+            });
+            // Lib.load('/frame');
         };
-        Lib.loopExec(loop);
+        Lib.loop(loop);
     },
     keyListen:()=>{
         document.body.onkeydown = (event)=>{
@@ -43,9 +43,6 @@ let Game = {
     },
     menuEvent:()=>{
         //
-        Event.add("#save2",Game.start);
-        Event.add("#save2",Game.start);
-        Event.add("#save2",Game.start);
         Event.add("#save2",Game.start);
     }
 };

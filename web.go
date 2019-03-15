@@ -4,27 +4,30 @@ import (
 	"bytes"
 	"encoding/base64"
 	"fmt"
+	"html/template"
 	"image"
 	"image/png"
 	"net/http"
 	"time"
+	"void_fleet/game"
 )
 
-var gameOver = false
 var asset = [][2]string{
 	{"background", "asset/img/bg.png"},
 	{"sprites", "asset/img/sprites.png"},
 }
 
 //var fps = 60
-var gameDelay = 10
 
-func generateFrames() {
-	loop := 0 // game loop
-	// main game loop
-	for !gameOver {
-		// game speed
-		time.Sleep(time.Millisecond * time.Duration(gameDelay))
+func GameRun() {
+	g := game.NewGame()
+	generateFrames(g)
+}
+
+func generateFrames(g *game.Game) {
+	loop := 0
+	for !g.Stop {
+		time.Sleep(time.Millisecond * time.Duration(g.Delay))
 		select {
 		case ev := <-events:
 			if ev == "Space" { // space bar
@@ -35,6 +38,9 @@ func generateFrames() {
 			}
 		default:
 		}
+
+		NewDomData(g)
+
 		//dst := image.NewRGBA(image.Rect(0, 0, W, H))
 		//gift.New().Draw(dst, assetImages["background"])
 		//createFrame(dst)
@@ -44,6 +50,30 @@ func generateFrames() {
 		//}
 		loop++
 	}
+}
+
+func NewDomData(g *game.Game) {
+	template.Must(template.New("issuelist").Parse(`
+<span class="xx-small badge badge-info move-dom id-gate" id="">跳跃门</span>
+<h1>{{.TotalCount}} issues</h1>
+<table>
+<tr style='text-align: left'>
+  <th>#</th>
+  <th>State</th>
+  <th>User</th>
+  <th>Title</th>
+</tr>
+{{range .Items}}
+<tr>
+  <td><a href='{{.HTMLURL}}'>{{.Number}}</a></td>
+  <td>{{.State}}</td>
+  <td><a href='{{.User.HTMLURL}}'>{{.User.Login}}</a></td>
+  <td><a href='{{.HTMLURL}}'>{{.Title}}</a></td>
+</tr>
+{{end}}
+</table>
+`))
+
 }
 
 // create a frame from the image

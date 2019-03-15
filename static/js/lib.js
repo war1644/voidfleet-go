@@ -1,5 +1,5 @@
 let Lib = {
-    loopExec:(callback,fps=60)=>{
+    loop:(callback,fps=60)=>{
         let lastTime,then=0;
         let gameLoop = ()=>{
             let now = Date.now();
@@ -27,7 +27,7 @@ let Lib = {
         ).then(callback())
     },
 
-    load:(url,callback=()=>{})=>{
+    load:(url,callback=(data)=>{})=>{
         fetch(url).then(data => data.text()).then(callback(data))
     },
 
