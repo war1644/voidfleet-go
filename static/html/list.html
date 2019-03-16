@@ -1,11 +1,11 @@
 <div class="container-fluid d-flex flex-column vh-100 bg-dark text-white">
     <div class="flex-fill text-white tab-content">
-        <div class="menu-cargo tab-pane fade show active col flex-fill h-90 card bg-dark text-center" role="tabpanel">
+        <div class="menu_cargo tab-pane fade show active col flex-fill h-90 card bg-dark text-center" role="tabpanel">
             <div class="h-10 border d-flex align-items-center">
                 cargo
             </div>
             <div class="card flex-fill h-90 bg-dark">
-                <ul class="list-group pre-scrollable bg-dark flex-fill scroll-h-90">
+                <ul class="game_item_list list-group pre-scrollable bg-dark flex-fill scroll-h-90">
                     <li class="list-group-item list-group-item-action">
                         <div class="row">
                             <div class="col-10 border">
@@ -28,12 +28,12 @@
             </div>
         </div>
         <div class="menu col flex-fill h-10 card bg-dark">
-            <ul class="nav nav-tabs row" id="myTab" role="tablist">
-                <li class="nav-item col"><a class="nav-link col btn btn-primary menu-galaxy-tab" data-toggle="tab" href=".menu-galaxy" role="tab" aria-selected="false">galaxy</a></li>
-                <li class="nav-item col"><a class="active nav-link col btn btn-primary menu-cargo-tab" data-toggle="tab" href=".menu-cargo" role="tab" aria-selected="true">cargo</a></li>
-                <li class="nav-item col"><a class="nav-link col btn btn-primary menu-fleet-tab" data-toggle="tab" href=".menu-fleet" role="tab" aria-selected="false">fleet</a></li>
-                <li class="nav-item col"><a class="nav-link col btn btn-primary menu-base-tab" data-toggle="tab" href=".menu-base" role="tab" aria-selected="false">base</a></li>
-                <li class="nav-item col"><a class="nav-link col btn btn-primary menu-system-tab" data-toggle="tab" href=".menu-system" role="tab" aria-selected="false">system</a></li>
+            <ul class="nav nav-tabs row menu_list" id="myTab" role="tablist">
+                <li class="nav-item col"><a class="nav-link active col btn btn-primary menu-galaxy-tab" data-toggle="tab" href=".menu_galaxy" role="tab" aria-selected="true">状态</a></li>
+                <li class="nav-item col"><a class="nav-link col btn btn-primary menu-cargo-tab" data-toggle="tab" href=".menu_cargo" role="tab" aria-selected="false">货仓</a></li>
+                <li class="nav-item col"><a class="nav-link col btn btn-primary menu-fleet-tab" data-toggle="tab" href=".menu_fleet" role="tab" aria-selected="false">舰队</a></li>
+                <li class="nav-item col"><a class="nav-link col btn btn-primary menu-base-tab" data-toggle="tab" href=".menu_base" role="tab" aria-selected="false">基地</a></li>
+                <li class="nav-item col"><a class="nav-link col btn btn-primary menu-system-tab" data-toggle="tab" href=".menu_system" role="tab" aria-selected="false">系统</a></li>
             </ul>
         </div>
     </div>

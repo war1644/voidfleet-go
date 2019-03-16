@@ -28,11 +28,13 @@ let Lib = {
     },
 
     load:(url,callback=(data)=>{})=>{
-        fetch(url).then(data => data.text()).then(callback(data))
+        fetch(url).then(data => data.text()).then(data => callback(data))
     },
-
+    getJson:(url,callback)=>{
+        fetch(url).then(data => data.json()).then(data => callback(data));
+    },
     get:(url,callback=(data)=>{})=>{
-        fetch(url).then(callback(response));
+        fetch(url).then(data => callback(data));
     },
 
     curl(url, data = {},type='GET') {

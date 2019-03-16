@@ -6,6 +6,14 @@ type Galaxy struct {
 	Current  string
 }
 
+func NewGalaxy() *Galaxy {
+	return &Galaxy{
+		NameList: []string{},
+		List:     make(map[string][]*Planet, 32),
+		Current:  "天狼星区",
+	}
+}
+
 //galaxy jump
 func (s *Galaxy) Jump() {
 	switch s.Current {

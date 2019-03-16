@@ -66,67 +66,67 @@ p {
 .map-apex{
     position: relative;
 }
-.id-tiannang {
+.id_tiannang {
     left: 73vw;
     top: 22vh;
 }
-.id-beiluo {
+.id_beiluo {
     left: 30vw;
     top: 33vh;
 }
-.id-taiyang {
+.id_taiyang {
     left: 50vw;
     top: 10vh;
 }
-.id-renma {
+.id_renma {
     left: 7vw;
     top: 18vh;
 }
-.id-beiji {
+.id_beiji {
     left: 40vw;
     top: 25vh;
 }
-.id-x {
+.id_x {
     left: 5vw;
     top: 45vh;
 }
 
 /*星区图 0,7 80,7 0,64 80,64*/
-.id-pirate_base {
+.id_pirate_base {
     left: 73vw;
     top: 22vh;
 }
-.id-star1 {
+.id_star1 {
     left: 40vw;
     top: 44vh;
 }
-.id-star2 {
+.id_star2 {
     left: 50vw;
     top: 10vh;
 }
-.id-star3 {
+.id_star3 {
     left: 80vw;
     top: 40vh;
 }
-.id-station {
+.id_station {
     left: 3vw;
     top: 23vh;
 }
-.id-gate {
+.id_gate {
     left: 45vw;
     top: 27vh;
 }
-.id-outpost {
+.id_outpost {
     left: 15vw;
     top: 32vh;
 }
 
 /*舰队*/
-.id-main_fleet{
+.id_main_fleet{
     left: 10vw;
     top: 15vh;
 }
-.id-outpost_fleet{
+.id_outpost_fleet{
     left: 55vw;
     top: 40vh;
 }

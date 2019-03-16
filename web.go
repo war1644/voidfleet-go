@@ -52,27 +52,8 @@ func generateFrames(g *game.Game) {
 	}
 }
 
-func NewDomData(g *game.Game) {
-	template.Must(template.New("issuelist").Parse(`
-<span class="xx-small badge badge-info move-dom id-gate" id="">跳跃门</span>
-<h1>{{.TotalCount}} issues</h1>
-<table>
-<tr style='text-align: left'>
-  <th>#</th>
-  <th>State</th>
-  <th>User</th>
-  <th>Title</th>
-</tr>
-{{range .Items}}
-<tr>
-  <td><a href='{{.HTMLURL}}'>{{.Number}}</a></td>
-  <td>{{.State}}</td>
-  <td><a href='{{.User.HTMLURL}}'>{{.User.Login}}</a></td>
-  <td><a href='{{.HTMLURL}}'>{{.Title}}</a></td>
-</tr>
-{{end}}
-</table>
-`))
+func NewData(g *game.Game) {
+	//player
 
 }
 

@@ -5,11 +5,12 @@ import (
 )
 
 type Player struct {
+	Name       string
 	Money      int
 	Kill       int
 	Reputation int
 	Cargo      map[string]Goods
-	Fleet      map[string]Ship
+	Fleet      []Ship
 	ShipsCount int
 	Year       int
 	Day        int
@@ -20,6 +21,9 @@ type Player struct {
 
 func NewPlayer(money int, newShip Ship, planet *Planet, game *Game) *Player {
 	player := &Player{
+		Cargo:      make(map[string]Goods, 128),
+		Fleet:      []Ship{},
+		Name:       "player",
 		Money:      money,
 		Kill:       0,
 		Reputation: 0,
@@ -91,17 +95,25 @@ func (s *Player) BuyShip(newShip Ship, isPlayer bool) {
 }
 
 func (s *Player) AddShip(newShip Ship, isPlayer bool) {
-	v, ok := s.Fleet[newShip.Name]
-	if ok {
-		v.Count += 1
-		s.Fleet[newShip.Name] = v
-		if isPlayer {
-			s.Ship = &v
+	if len(s.Fleet) > 0 {
+		isAdd := false
+		for k := range s.Fleet {
+			if s.Fleet[k].Name == newShip.Name {
+				s.Fleet[k].Count += 1
+				isAdd = true
+			}
+		}
+		if !isAdd {
+			s.Fleet = append(s.Fleet, newShip)
+			if isPlayer {
+				s.Ship = &s.Fleet[len(s.Fleet)]
+			}
 		}
 	} else {
-		s.Fleet[newShip.Name] = newShip
+		s.Fleet = make([]Ship, 1)
+		s.Fleet[0] = newShip
 		if isPlayer {
-			s.Ship = &newShip
+			s.Ship = &s.Fleet[0]
 		}
 	}
 }
