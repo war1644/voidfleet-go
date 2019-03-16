@@ -9,12 +9,12 @@ type Goods struct {
 	Describe      string
 }
 
-func NewGoods(goodName, goodDescribe string, goodPrice int, isEquip bool) Goods {
+func NewGoods(goodsName, goodsDescribe string, goodsPrice int, isEquip bool) Goods {
 	return Goods{
-		Name:          goodName,
-		Price:         goodPrice,
-		StandardPrice: goodPrice,
-		Describe:      goodDescribe,
+		Name:          goodsName,
+		Price:         goodsPrice,
+		StandardPrice: goodsPrice,
+		Describe:      goodsDescribe,
 		Quantity:      0,
 		IsEquip:       isEquip,
 	}

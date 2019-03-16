@@ -16,6 +16,7 @@ type Ship struct {
 	Fuel          int
 	MaxFuel       int
 	Count         int
+	Equips        []Goods
 }
 
 func NewShip(shipName, shipDescribe string, shipHp, shipCargo, shipSpeed, shipPrice, shipFuel int) Ship {
@@ -31,6 +32,7 @@ func NewShip(shipName, shipDescribe string, shipHp, shipCargo, shipSpeed, shipPr
 		MaxFuel:       shipFuel,
 		Describe:      shipDescribe,
 		Count:         1,
+		Equips:        make([]Goods, 8),
 	}
 }
 

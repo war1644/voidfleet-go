@@ -49,18 +49,18 @@ func (s *Game) InitGameGoods() {
 		NewGoods("拳头", "", 300, true),
 		NewGoods("鱼雷", "", 500, true),
 		//装备
-		NewGoods("跳跃引擎", "", 20000, true),
-		NewGoods("激光炮", "", 200000, true),
-		NewGoods("主炮", "", 100000, true),
-		NewGoods("冲击波炮", "", 150000, true),
-		NewGoods("机炮", "", 50000, true),
+		NewGoods("跳跃引擎", "", 2000, true),
+		NewGoods("主炮", "", 10000, true),
+		NewGoods("机炮", "", 5000, true),
+		NewGoods("激光炮", "", 20000, true),
+		NewGoods("冲击波", "", 15000, true),
 		//物品
 		NewGoods("能量电池", "", 10, false),
-		NewGoods("金属", "", 50, false),
 		NewGoods("矿石", "", 30, false),
+		NewGoods("金属", "", 50, false),
 		NewGoods("武器", "", 100, false),
-		NewGoods("暗物质", "", 450000, false),
 		NewGoods("兴奋剂", "", 1000, false),
+		NewGoods("暗物质", "", 450000, false),
 	}
 }
 

@@ -10,11 +10,28 @@ type Player struct {
 	Reputation int
 	Cargo      map[string]Goods
 	Fleet      map[string]Ship
+	ShipsCount int
 	Year       int
 	Day        int
 	Planet     *Planet
 	GoodsCount int
 	Ship       *Ship
+}
+
+func NewPlayer(money int, newShip Ship, planet *Planet, game *Game) *Player {
+	player := &Player{
+		Money:      money,
+		Kill:       0,
+		Reputation: 0,
+		Year:       0,
+		Day:        0,
+		GoodsCount: 0,
+		ShipsCount: 0,
+		Ship:       &newShip,
+	}
+	player.SetPlant(planet, game)
+	player.AddShip(newShip, true)
+	return player
 }
 
 func (s *Player) CalculateYears() {
@@ -26,7 +43,6 @@ func (s *Player) CalculateYears() {
 
 func (s *Player) SetGoToPlant(toPlanet *Planet, game *Game) bool {
 	distance := s.CalculatePlanetsDistance(toPlanet)
-
 	if s.Ship.CalculateFuel(distance) {
 		if (distance / s.Ship.Speed) <= 0 {
 			s.Day += 1
