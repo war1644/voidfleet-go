@@ -8,9 +8,8 @@ import (
 	"path/filepath"
 )
 
-var frame string
 var rootDir string
-var events chan string // keyboard events
+var events chan string // js events
 
 const WWW = "/static/"
 const PORT = ":1212"
@@ -26,19 +25,30 @@ func init() {
 	}
 }
 
-func main() {
-	prefixChannel := make(chan string)
-	go app(prefixChannel)
-	prefix := <-prefixChannel
-	err := webview.Open("Void Fleet",
-		prefix+WWW+"index.html", W, H, true)
-	if err != nil {
-		fmt.Println("webview.Open error : ", err)
-	}
+func handleRPC(w webview.WebView, data string) {
+	fmt.Println("js console: ", data)
 }
 
-func app(prefixChannel chan string) {
+func main() {
+	prefixChannel := make(chan string)
+	go startServer(prefixChannel)
+	url := <-prefixChannel
+	w := webview.New(
+		webview.Settings{
+			Width:                  W,
+			Height:                 H,
+			Title:                  "Void Fleet",
+			URL:                    url + WWW + "index.html",
+			ExternalInvokeCallback: handleRPC,
+			Debug:                  true,
+		})
+	defer w.Exit()
+	w.Run()
+}
+
+func startServer(prefixChannel chan string) {
 	mux := http.NewServeMux()
+	//static file process
 	mux.Handle(WWW, http.StripPrefix(WWW, http.FileServer(http.Dir(rootDir+WWW))))
 	go GameRun()
 	mux.HandleFunc("/frame", loopFrame)

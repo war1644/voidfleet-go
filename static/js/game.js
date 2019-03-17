@@ -1,32 +1,44 @@
 window.onload = ()=>{
-    Lib.eventDelegate();
+    Game.init();
     let params = Lib.getUrlParams("t");
     if (!params) params = 'start';
     Lib.loadHtml(`html/${params}.html`);
-    Game.bindEvent();
-    Game.keyListen();
-    // str2.replace(/\[.*?\]/g, function (value) {
-    //     let key = value.substring(1, value.length - 1);
-    //     return emojiMap[key];
-    // });
-
 };
 
 
 let Game = {
+    init:()=>{
+        //console output
+        window.console.log = (s)=>{
+            external.invoke('{"type":"log","data":"'+s+'"}')
+        };
+        window.console.debug=(s)=>{
+            external.invoke('{"type":"debug","data":"'+s+'"}')
+        };
+        window.console.warn=(s)=>{
+            external.invoke('{"type":"warn","data":"'+s+'"}')
+        };
+        window.console.error=(s)=>{
+            external.invoke('{"type":"error","data":"'+s+'"}')
+        };
+        console.log("test log");
+        Lib.eventDelegate();
+        Game.bindEvent();
+        Game.keyListen();
+    },
     start:()=>{
         Lib.loadHtml('html/home.html');
         // Lib.loadHtml('html/fight.html',document.body,()=>{
         //     imgDom = document.querySelector(".fight-screen");
         //     alert(JSON.stringify(imgDom));
         // });
-        let loop = ()=>{
+        // let loop = ()=>{
             Lib.getJson('/frame',Game.update);
-        };
-        Lib.loop(loop);
+        // };
+        // Lib.loop(loop);
     },
     update:(json)=>{
-
+        alert(JSON.stringify(json))
     },
     keyListen:()=>{
         document.body.onkeydown = (event)=>{

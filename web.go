@@ -3,8 +3,8 @@ package main
 import (
 	"bytes"
 	"encoding/base64"
+	"encoding/json"
 	"fmt"
-	"html/template"
 	"image"
 	"image/png"
 	"net/http"
@@ -16,6 +16,12 @@ var asset = [][2]string{
 	{"background", "asset/img/bg.png"},
 	{"sprites", "asset/img/sprites.png"},
 }
+
+type ResponseJson struct {
+	PlayerStatus *game.Player `json:"playerStatus"`
+}
+
+var frameData *ResponseJson
 
 //var fps = 60
 
@@ -38,9 +44,8 @@ func generateFrames(g *game.Game) {
 			}
 		default:
 		}
-
-		NewDomData(g)
-
+		NewData(g)
+		loop++
 		//dst := image.NewRGBA(image.Rect(0, 0, W, H))
 		//gift.New().Draw(dst, assetImages["background"])
 		//createFrame(dst)
@@ -48,30 +53,25 @@ func generateFrames(g *game.Game) {
 		//	//playSound("explosion")
 		//	time.Sleep(time.Second)
 		//}
-		loop++
 	}
 }
 
 func NewData(g *game.Game) {
 	//player
-
+	frameData = &ResponseJson{PlayerStatus: g.Player}
 }
 
-// create a frame from the image
 func createFrame(img image.Image) {
 	var buf bytes.Buffer
 	png.Encode(&buf, img)
-	frame = base64.StdEncoding.EncodeToString(buf.Bytes())
+	base64.StdEncoding.EncodeToString(buf.Bytes())
 }
 
 func loopFrame(w http.ResponseWriter, r *http.Request) {
-	str := "<img class='fight-screen' style='display: block; width: 100%; height: 100%' src=data:image/png;base64," + frame + ">"
 	w.Header().Set("Cache-Control", "no-cache")
-	len, err := w.Write([]byte(str))
+	err := json.NewEncoder(w).Encode(frameData)
 	if err != nil {
 		fmt.Println(err)
-	} else {
-		fmt.Println(len)
 	}
 }
 
