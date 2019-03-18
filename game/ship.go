@@ -32,7 +32,7 @@ func NewShip(shipName, shipDescribe string, shipHp, shipCargo, shipSpeed, shipPr
 		MaxFuel:       shipFuel,
 		Describe:      shipDescribe,
 		Count:         1,
-		Equips:        make([]Goods, 8),
+		Equips:        []Goods{},
 	}
 }
 

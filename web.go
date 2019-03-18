@@ -17,11 +17,26 @@ var asset = [][2]string{
 	{"sprites", "asset/img/sprites.png"},
 }
 
-type ResponseJson struct {
-	PlayerStatus *game.Player `json:"playerStatus"`
+type PlayerJson struct {
 }
 
-var frameData *ResponseJson
+type PlanetJson struct {
+}
+
+type StarJson struct {
+}
+
+type GalaxyJson struct {
+}
+
+type ResponseJson struct {
+	Player *PlayerJson `json:"player"`
+	Planet *PlanetJson `json:"planet"`
+	Galaxy *StarJson   `json:"galaxy"`
+	Star   *GalaxyJson `json:"star"`
+}
+
+var frameData []byte
 
 //var fps = 60
 
@@ -57,8 +72,20 @@ func generateFrames(g *game.Game) {
 }
 
 func NewData(g *game.Game) {
-	//player
-	frameData = &ResponseJson{PlayerStatus: g.Player}
+	var err error
+	frameData, err = json.Marshal(struct {
+		Player *game.Player
+		Planet *game.Planet
+		Galaxy *game.Galaxy
+	}{
+		Player: g.Player,
+		Planet: g.CurrentPlanet,
+		Galaxy: g.Galaxy,
+	})
+
+	if err != nil {
+		fmt.Println(err)
+	}
 }
 
 func createFrame(img image.Image) {
@@ -69,10 +96,12 @@ func createFrame(img image.Image) {
 
 func loopFrame(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Cache-Control", "no-cache")
-	err := json.NewEncoder(w).Encode(frameData)
+	len, err := w.Write(frameData)
+	//err := json.NewEncoder(w).Encode(frameData)
 	if err != nil {
 		fmt.Println(err)
 	}
+	fmt.Println(len)
 }
 
 func captureKeys(w http.ResponseWriter, r *http.Request) {

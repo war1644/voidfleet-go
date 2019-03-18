@@ -1,4 +1,7 @@
 let
+    PlayerData,
+    PlanetData,
+    GalaxyData,
     playerStatusDom,
     gameMessageDom,
     starMapDom,

@@ -14,7 +14,7 @@ type Player struct {
 	ShipsCount int
 	Year       int
 	Day        int
-	Planet     *Planet
+	Planet     *Planet `json:"-"`
 	GoodsCount int
 	Ship       *Ship
 }

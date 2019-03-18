@@ -8,20 +8,24 @@ window.onload = ()=>{
 
 let Game = {
     init:()=>{
-        //console output
-        window.console.log = (s)=>{
-            external.invoke('{"type":"log","data":"'+s+'"}')
-        };
-        window.console.debug=(s)=>{
-            external.invoke('{"type":"debug","data":"'+s+'"}')
-        };
-        window.console.warn=(s)=>{
-            external.invoke('{"type":"warn","data":"'+s+'"}')
-        };
-        window.console.error=(s)=>{
-            external.invoke('{"type":"error","data":"'+s+'"}')
-        };
+        Lib.env();
+        if (!Lib.isChrome){
+            //console output
+            window.console.log = (s)=>{
+                external.invoke('{"type":"log","data":"'+JSON.stringify(s)+'"}')
+            };
+            window.console.debug=(s)=>{
+                external.invoke('{"type":"debug","data":"'+JSON.stringify(s)+'"}')
+            };
+            window.console.warn=(s)=>{
+                external.invoke('{"type":"warn","data":"'+JSON.stringify(s)+'"}')
+            };
+            window.console.error=(s)=>{
+                external.invoke('{"type":"error","data":"'+JSON.stringify(s)+'"}')
+            };
+        }
         console.log("test log");
+        console.log(window.navigator.userAgent);
         Lib.eventDelegate();
         Game.bindEvent();
         Game.keyListen();
@@ -38,7 +42,7 @@ let Game = {
         // Lib.loop(loop);
     },
     update:(json)=>{
-        alert(JSON.stringify(json))
+        console.log(JSON.stringify(json))
     },
     keyListen:()=>{
         document.body.onkeydown = (event)=>{

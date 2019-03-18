@@ -2,7 +2,7 @@ package game
 
 type Galaxy struct {
 	NameList []string
-	List     map[string][]*Planet
+	List     map[string][]*Planet `json:"-"`
 	Current  string
 }
 

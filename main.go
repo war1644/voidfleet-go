@@ -14,7 +14,7 @@ var events chan string // js events
 const WWW = "/static/"
 const PORT = ":1212"
 
-var W, H = 800, 600
+var W, H = 400, 600
 
 func init() {
 	events = make(chan string, 1000)
@@ -49,7 +49,10 @@ func main() {
 func startServer(prefixChannel chan string) {
 	mux := http.NewServeMux()
 	//static file process
-	mux.Handle(WWW, http.StripPrefix(WWW, http.FileServer(http.Dir(rootDir+WWW))))
+	mux.Handle("/static/", http.StripPrefix(WWW, http.FileServer(http.Dir(rootDir+WWW))))
+	mux.Handle("/css/", http.StripPrefix(WWW, http.FileServer(http.Dir(rootDir+WWW))))
+	mux.Handle("/html/", http.StripPrefix(WWW, http.FileServer(http.Dir(rootDir+WWW))))
+	mux.Handle("/js/", http.StripPrefix(WWW, http.FileServer(http.Dir(rootDir+WWW))))
 	go GameRun()
 	mux.HandleFunc("/frame", loopFrame)
 	mux.HandleFunc("/key", captureKeys)

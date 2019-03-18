@@ -1,4 +1,6 @@
 let Lib = {
+    isChrome:false,
+    OSX:false,
     loop:(callback,fps=60)=>{
         let lastTime,then=0;
         let gameLoop = ()=>{
@@ -22,8 +24,9 @@ let Lib = {
         return params[index]
     },
     loadHtml:(url,dom=document.body,callback=()=>{})=>{
-        fetch(url).then(data => data.text()).then(data =>
-            dom.innerHTML = data
+        fetch(url).then(data => data.text()).then(data =>{
+            return dom.innerHTML = data
+        }
         ).then(callback())
     },
 
@@ -69,6 +72,11 @@ let Lib = {
                 }
             }
         }
+    },
+    env:()=>{
+        let u = window.navigator.userAgent; // 通过navigator.userAgent获取当前浏览器的信息
+        Lib.Chrome = u.indexOf('Chrome') > -1; //Chrome
+        Lib.OSX = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);//OSX
     },
 };
 

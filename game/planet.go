@@ -8,7 +8,7 @@ type Planet struct {
 	X            int
 	Y            int
 	Goods        []Goods
-	Fleet        []Ship
+	Fleet        []Ship `json:"-"`
 }
 
 func NewPlanet(name, galaxy string, x, y int) *Planet {
