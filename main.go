@@ -11,13 +11,13 @@ import (
 var rootDir string
 var events chan string // js events
 
-const WWW = "/static/"
+const STATIC = "/static/"
 const PORT = ":1212"
 
 var W, H = 400, 600
 
 func init() {
-	events = make(chan string, 1000)
+	events = make(chan string, 100)
 	var err error
 	rootDir, err = filepath.Abs(filepath.Dir(os.Args[0]))
 	if err != nil {
@@ -25,6 +25,8 @@ func init() {
 	}
 }
 
+//考虑以后可移植性，这个只拿来debug
+//数据通信直接用js fetch
 func handleRPC(w webview.WebView, data string) {
 	fmt.Println("js console: ", data)
 }
@@ -38,7 +40,7 @@ func main() {
 			Width:                  W,
 			Height:                 H,
 			Title:                  "Void Fleet",
-			URL:                    url + WWW + "index.html",
+			URL:                    url + STATIC + "index.html",
 			ExternalInvokeCallback: handleRPC,
 			Debug:                  true,
 		})
@@ -49,13 +51,14 @@ func main() {
 func startServer(prefixChannel chan string) {
 	mux := http.NewServeMux()
 	//static file process
-	mux.Handle("/static/", http.StripPrefix(WWW, http.FileServer(http.Dir(rootDir+WWW))))
-	mux.Handle("/css/", http.StripPrefix(WWW, http.FileServer(http.Dir(rootDir+WWW))))
-	mux.Handle("/html/", http.StripPrefix(WWW, http.FileServer(http.Dir(rootDir+WWW))))
-	mux.Handle("/js/", http.StripPrefix(WWW, http.FileServer(http.Dir(rootDir+WWW))))
+	mux.Handle("/static/", http.StripPrefix(STATIC, http.FileServer(http.Dir(rootDir+STATIC))))
+	mux.Handle("/css/", http.StripPrefix(STATIC, http.FileServer(http.Dir(rootDir+STATIC))))
+	mux.Handle("/html/", http.StripPrefix(STATIC, http.FileServer(http.Dir(rootDir+STATIC))))
+	mux.Handle("/js/", http.StripPrefix(STATIC, http.FileServer(http.Dir(rootDir+STATIC))))
 	go GameRun()
 	mux.HandleFunc("/frame", loopFrame)
-	mux.HandleFunc("/key", captureKeys)
+	mux.HandleFunc("/event", captureEvent)
+	mux.HandleFunc("/key", captureKey)
 	prefixChannel <- "http://127.0.0.1" + PORT
 	err := http.ListenAndServe(PORT, mux)
 	if err != nil {

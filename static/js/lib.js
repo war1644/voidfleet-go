@@ -25,9 +25,9 @@ let Lib = {
     },
     loadHtml:(url,dom=document.body,callback=()=>{})=>{
         fetch(url).then(data => data.text()).then(data =>{
-            return dom.innerHTML = data
-        }
-        ).then(callback())
+            dom.innerHTML = data;
+            callback()
+        })
     },
 
     load:(url,callback=(data)=>{})=>{

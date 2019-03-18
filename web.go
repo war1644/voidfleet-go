@@ -88,6 +88,23 @@ func NewData(g *game.Game) {
 	}
 }
 
+func InitData(g *game.Game) {
+	var err error
+	frameData, err = json.Marshal(struct {
+		Player *game.Player
+		Planet *game.Planet
+		Galaxy *game.Galaxy
+	}{
+		Player: g.Player,
+		Planet: g.CurrentPlanet,
+		Galaxy: g.Galaxy,
+	})
+
+	if err != nil {
+		fmt.Println(err)
+	}
+}
+
 func createFrame(img image.Image) {
 	var buf bytes.Buffer
 	png.Encode(&buf, img)
@@ -104,11 +121,30 @@ func loopFrame(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(len)
 }
 
-func captureKeys(w http.ResponseWriter, r *http.Request) {
-	ev := r.FormValue("event")
-	if ev == "" {
-		ev = "Space"
+func eventProcess(enevt string) {
+
+}
+
+func captureEvent(w http.ResponseWriter, r *http.Request) {
+	event := r.FormValue("event")
+	switch event {
+	case "key":
+		break
+	case "event":
+		eventValue := r.FormValue("value")
+		eventProcess(eventValue)
+		break
+	default:
+		break
 	}
-	events <- ev
+	w.Header().Set("Cache-Control", "no-cache")
+}
+
+func captureKey(w http.ResponseWriter, r *http.Request) {
+	key := r.FormValue("key")
+	if key == "" {
+		key = "Space"
+	}
+	events <- key
 	w.Header().Set("Cache-Control", "no-cache")
 }
