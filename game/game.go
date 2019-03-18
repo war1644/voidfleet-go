@@ -57,6 +57,7 @@ func (s *Game) InitGalaxy() {
 		}
 		s.Galaxy.List[galaxyName] = planets
 	}
-	s.CurrentPlanet = s.Galaxy.List[s.Galaxy.Current][0]
-
+	s.Galaxy.CurrentName = "天狼星区"
+	s.CurrentPlanet = s.Galaxy.List[s.Galaxy.CurrentName][0]
+	s.Galaxy.SetCurrent(s.Galaxy.CurrentName)
 }
