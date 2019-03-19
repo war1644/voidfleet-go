@@ -4,6 +4,7 @@ type Game struct {
 	Galaxy        *Galaxy
 	Player        *Player
 	Items         *Items
+	Event         *Event
 	CurrentPlanet *Planet
 	IsJump        bool
 	Stop          bool
@@ -18,6 +19,7 @@ func NewGame() *Game {
 		Stop:   false,
 		Galaxy: NewGalaxy(),
 		Items:  NewItems(),
+		Event:  NewEvent(),
 	}
 	game.InitGalaxy()
 	game.InitPlayer()
@@ -42,7 +44,7 @@ func (s *Game) InitGalaxy() {
 		planets := make([]*Planet, planetsLen)
 		planets[0] = NewPlanet("跳跃门", galaxyName, 40, 28)
 		//设置跳跃门舰队（星系主力舰队）
-		planets[0].Fleet = s.Items.SetRandomFleet(48)
+		//planets[0].Fleet = s.Items.SetRandomFleet(48)
 		for i := 1; i < planetsLen; i++ {
 			planetName, x, y := PlanetNamePool()
 			xDistance := x - planets[0].X
@@ -53,7 +55,7 @@ func (s *Game) InitGalaxy() {
 			planets[i].Goods = s.Items.SetRandomGoodsPrice()
 			planets[i].Distance = distance
 			//设置星球护卫舰队
-			planets[i].Fleet = s.Items.SetRandomFleet(0)
+			//planets[i].Fleet = s.Items.SetRandomFleet(0)
 		}
 		s.Galaxy.List[galaxyName] = planets
 	}

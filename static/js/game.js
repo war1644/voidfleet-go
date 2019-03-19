@@ -45,7 +45,7 @@ let Game = {
     update:(json)=>{
         console.log(JSON.stringify(json));
         Game.playerStatusDomPrecess(json.Player);
-        Game.gameMessageDomProcess();
+        Game.gameMessageDomProcess(json.Planet);
         Game.galaxyMapDomProcess(json.Galaxy);
         Game.starMapDomProcess(json.Galaxy.Current);
     },
@@ -96,19 +96,34 @@ let Game = {
         Lib.getJson('/frame',Game.update);
     },
     playerStatusDomPrecess:(data)=>{
+        let dom = '';
         // for (let k in data) {
-        //     data[k]
-        // }
-        // <p class="small">旗舰：<span>帝国战机</span></p>
-        // <p class="small">装甲：<span>100</span></p>
-        // <p class="small">护盾：<span>1000</span></p>
-        // <p class="small">声望：<span>0</span></p>
-        // <p class="small">僚机：<span>0</span></p>
-        // <p class="small">金钱：<span>10000</span></p>
-        // <p class="small">能量电池：<span>0</span></p>
+        dom += `
+        <p class="small">旗舰：<span>${data.Ship.Name}</span></p>
+        <p class="small">装甲：<span>${data.Ship.HP}</span></p>
+        <p class="small">护盾：<span>${data.Ship.EP}</span></p>
+        <p class="small">声望：<span>${data.Reputation}</span></p>
+        <p class="small">僚机：<span>${data.ShipsCount}</span></p>
+        <p class="small">金钱：<span>${data.Money}</span></p>`;
+        playerStatusDom.innerHTML = dom;
+
     },
     gameMessageDomProcess:(data)=>{
 
+        let events = [
+            {MsgType:"info",MsgTypePill:"信息",Msg:`你已进入${data.Galaxy}-${data.Name},坐标:${data.X},${data.Y}`},
+            {MsgType:"primary",MsgTypePill:"新闻",Msg:`海盗正在袭击${data.Galaxy}-${data.Name},坐标:${data.X},${data.Y}`},
+            {MsgType:"primary",MsgTypePill:"新闻",Msg:`星区警卫队正在前往${data.Galaxy}-${data.Name},坐标:${data.X},${data.Y}`},
+            {MsgType:"success",MsgTypePill:"任务",Msg:`test任务,坐标:0,0`},
+        ];
+        let dom = "";
+        for (let k in events) {
+            let msg = events[k];
+            dom += `
+        <p class="x-small"><span class="badge badge-${msg.MsgType} badge-pill">${msg.MsgTypePill}</span>${msg.Msg}</p>
+        `;
+        }
+        gameMessageDom.innerHTML = dom;
     // <p class="x-small"><span class="badge badge-info badge-pill">信息</span>正在停靠空间站</p>
     //     <p class="x-small"><span class="badge badge-info badge-pill">信息</span>到达天狼星区殖民星球1</p>
     //     <p class="x-small"><span class="badge badge-primary badge-pill">新闻</span>海盗正在攻击天狼星区巡逻队</p>

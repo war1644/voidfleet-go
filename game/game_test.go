@@ -7,5 +7,7 @@ import (
 
 func TestGame_Item_Build(t *testing.T) {
 	game := NewGame()
-	fmt.Println(game.Player)
+	for _, v := range game.Galaxy.Current {
+		fmt.Println(v)
+	}
 }
