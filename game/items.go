@@ -53,7 +53,7 @@ func (s *Items) SetRandomGoodsPrice() []Goods {
 	for i := range s.Goods {
 		// copy value
 		tmpGoods[i] = s.Goods[i]
-		tmpGoods[i].Price = RandNum(tmpGoods[i].Price>>1, tmpGoods[i].Price<<1)
+		tmpGoods[i].Price = RandNum(tmpGoods[i].Price>>1, tmpGoods[i].Price<<1, i)
 	}
 	return tmpGoods
 }
@@ -64,12 +64,12 @@ func (s *Items) SetRandomFleet(number int) []Ship {
 	if number > 0 {
 		tmpNumber = number
 	} else {
-		tmpNumber = RandNum(12, 32)
+		tmpNumber = RandNum(12, 32, 1)
 	}
 	tmpShips := make([]Ship, tmpNumber)
 	shipsLen := len(s.Ships)
 	for i := 0; i < tmpNumber; i++ {
-		tmpRand := RandNum(2, shipsLen)
+		tmpRand := RandNum(2, shipsLen, i)
 		tmpShips[i] = s.Ships[tmpRand]
 	}
 	return tmpShips

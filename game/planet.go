@@ -1,6 +1,7 @@
 package game
 
 type Planet struct {
+	ID           string
 	Name         string
 	SpaceStation string
 	Galaxy       string
@@ -11,8 +12,9 @@ type Planet struct {
 	Fleet        []Ship  `json:"-"`
 }
 
-func NewPlanet(name, galaxy string, x, y int) *Planet {
+func NewPlanet(id, name, galaxy string, x, y int) *Planet {
 	return &Planet{
+		ID:     id,
 		Name:   name,
 		Galaxy: galaxy,
 		X:      x,

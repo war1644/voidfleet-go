@@ -3,8 +3,8 @@ package main
 import (
 	"bytes"
 	"encoding/base64"
-	"encoding/json"
 	"fmt"
+	"github.com/json-iterator/go"
 	"image"
 	"image/png"
 	"net/http"
@@ -73,7 +73,7 @@ func generateFrames(g *game.Game) {
 
 func NewData(g *game.Game) {
 	var err error
-	frameData, err = json.Marshal(struct {
+	frameData, err = jsoniter.Marshal(struct {
 		Player *game.Player
 		Planet *game.Planet
 		Galaxy *game.Galaxy
@@ -90,7 +90,7 @@ func NewData(g *game.Game) {
 
 func InitData(g *game.Game) {
 	var err error
-	frameData, err = json.Marshal(struct {
+	frameData, err = jsoniter.Marshal(struct {
 		Player *game.Player
 		Planet *game.Planet
 		Galaxy *game.Galaxy

@@ -39,18 +39,18 @@ func (s *Game) InitGalaxy() {
 		"PLA",
 		"北极星区",
 	}
-	for _, galaxyName := range s.Galaxy.NameList {
-		planetsLen := RandNum(9, 18)
+	for i, galaxyName := range s.Galaxy.NameList {
+		planetsLen := RandNum(9, 18, i)
 		planets := make([]*Planet, planetsLen)
-		planets[0] = NewPlanet("跳跃门", galaxyName, 40, 28)
+		planets[0] = NewPlanet("gate", "跳跃门", galaxyName, 40, 28)
 		//设置跳跃门舰队（星系主力舰队）
 		//planets[0].Fleet = s.Items.SetRandomFleet(48)
 		for i := 1; i < planetsLen; i++ {
-			planetName, x, y := PlanetNamePool()
+			idName, x, y := PlanetNamePool(i)
 			xDistance := x - planets[0].X
 			yDistance := y - planets[0].Y
 			distance := xDistance + yDistance
-			planets[i] = NewPlanet(planetName, galaxyName, x, y)
+			planets[i] = NewPlanet(idName[1], idName[0], galaxyName, x, y)
 			//设置市场价
 			planets[i].Goods = s.Items.SetRandomGoodsPrice()
 			planets[i].Distance = distance
