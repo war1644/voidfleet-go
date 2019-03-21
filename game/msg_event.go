@@ -9,7 +9,7 @@ type Event struct {
 
 func NewEvent() *Event {
 	return &Event{
-		MsgList:    make([]Msg, 3),
+		MsgList:    []Msg{},
 		MsgTypeMap: map[string]string{"info": "信息", "primary": "新闻", "success": "任务"},
 	}
 }
