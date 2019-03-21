@@ -74,3 +74,20 @@ func (s *Items) SetRandomFleet(number int) []Ship {
 	}
 	return tmpShips
 }
+
+//生成小队 战机、护卫舰
+func (s *Items) SetRandGroup(number int) []Ship {
+	tmpNumber := 0
+	if number > 0 {
+		tmpNumber = number
+	} else {
+		tmpNumber = RandNum(12, 32, 1)
+	}
+	tmpShips := make([]Ship, tmpNumber)
+	shipsLen := len(s.Ships)
+	for i := 0; i < tmpNumber; i++ {
+		tmpRand := RandNum(2, shipsLen-3, i)
+		tmpShips[i] = s.Ships[tmpRand]
+	}
+	return tmpShips
+}

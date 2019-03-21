@@ -25,6 +25,8 @@ func NewGame() *Game {
 	}
 	game.InitGalaxy()
 	game.InitPlayer()
+	//生成一些随机事件
+	game.randEvent()
 	return game
 }
 
@@ -66,5 +68,26 @@ func (s *Game) InitGalaxy() {
 	s.Galaxy.SetCurrent(s.Galaxy.CurrentName)
 
 	//星区星系生成完成，输出信息
-	s.Event.NewMsg(s.MsgType[0], s.Galaxy.CurrentName)
+	s.Event.NewMsg(s.MsgType[0], "到达:"+s.Galaxy.CurrentName+"-"+s.CurrentPlanet.Name)
+}
+
+func (s *Game) randEvent() {
+	//海盗袭击
+	p1 := s.Galaxy.GetRandPlanet(1)
+	s.Event.NewMsg(s.MsgType[1], "海盗正在袭击:"+s.Galaxy.CurrentName+"-"+p1.Name)
+	p1.EnemyFleet = s.Items.SetRandGroup(6)
+	s.Event.NewMsg(s.MsgType[1], s.Galaxy.CurrentName+"-"+p1.Name+"护卫舰队正在迎战")
+
+	//势力战争
+	//p2 := s.Galaxy.GetRandPlanet(2)
+	//s.Event.NewMsg(s.MsgType[1], "海盗正在袭击:"+s.Galaxy.CurrentName+"-"+p2.Name)
+	//p2.EnemyFleet = s.Items.SetRandGroup(6)
+	//s.Event.NewMsg(s.MsgType[1], s.Galaxy.CurrentName+"-"+p2.Name+"护卫舰队正在迎战")
+
+	//贸易
+	p3 := s.Galaxy.GetRandPlanet(3)
+	s.Event.NewMsg(s.MsgType[1], s.Galaxy.CurrentName+"-"+p3.Name+"急缺"+p3.Goods[10].Name)
+	p4 := s.Galaxy.GetRandPlanet(4)
+	s.Event.NewMsg(s.MsgType[1], s.Galaxy.CurrentName+"-"+p4.Name+p4.Goods[12].Name+"滞销")
+
 }

@@ -5,11 +5,12 @@ type Planet struct {
 	Name         string
 	SpaceStation string
 	//Galaxy       string
-	Distance int
-	X        int
-	Y        int
-	Goods    []Goods `json:"-"`
-	Fleet    []Ship  `json:"-"`
+	Distance   int
+	X          int
+	Y          int
+	Goods      []Goods `json:"-"`
+	Fleet      []Ship  `json:"-"`
+	EnemyFleet []Ship
 }
 
 func NewPlanet(id, name string, x, y int) *Planet {
@@ -17,9 +18,10 @@ func NewPlanet(id, name string, x, y int) *Planet {
 		ID:   id,
 		Name: name,
 		//Galaxy: galaxy,
-		X:     x,
-		Y:     y,
-		Fleet: []Ship{},
-		Goods: []Goods{},
+		X:          x,
+		Y:          y,
+		Fleet:      []Ship{},
+		EnemyFleet: []Ship{},
+		Goods:      []Goods{},
 	}
 }

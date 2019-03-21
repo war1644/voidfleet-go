@@ -15,6 +15,10 @@ func NewGalaxy() *Galaxy {
 	}
 }
 
+func (s *Galaxy) GetRandPlanet(seed int) *Planet {
+	return s.Current[RandNum(1, len(s.Current), seed)]
+}
+
 func (s *Galaxy) SetCurrent(name string) {
 	s.Current = s.List[name]
 }

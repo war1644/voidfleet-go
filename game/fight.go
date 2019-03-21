@@ -6,7 +6,7 @@ type Fight struct {
 	game     *Game
 }
 
-func Battle(game *Game, player *Player, AiShip *Ship) bool {
+func Battle(item *Items, player *Player, AiShip *Ship) bool {
 	display := NewDisplay()
 	display.Show("遭遇舰队")
 	playerHp := player.Ship.HP
@@ -45,7 +45,7 @@ func Battle(game *Game, player *Player, AiShip *Ship) bool {
 	//装备掉落
 	if haveGoods >= 8 {
 		index := RandNum(0, len(AiShip.Equips), 1)
-		goods := game.Items.Goods[AiShip.Equips[index]]
+		goods := item.Goods[AiShip.Equips[index]]
 		display.AutoShow("获得{tmpName}")
 		goods.Quantity = 1
 		player.AddCargoGoods(goods)

@@ -25,8 +25,13 @@ func (s *Event) Add(msg Msg) {
 }
 
 func (s *Event) Get(msgLen int) []Msg {
-	if len(s.MsgList) < msgLen {
+	curLen := len(s.MsgList)
+	if curLen == 0 {
 		fmt.Println("MsgList not Length!")
+		return []Msg{}
+	}
+	if curLen < msgLen {
+		msgLen = curLen
 	}
 	tmpMsgList := s.MsgList[:msgLen]
 	s.MsgList = s.MsgList[msgLen:]

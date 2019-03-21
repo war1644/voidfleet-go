@@ -138,15 +138,12 @@ func eventProcess(event string) []byte {
 	case "msg":
 		//获取msg
 
-		break
 	case "update":
 		//刷新数据
-		break
 	case "start_data":
 		//初始数据
 		return startData
 	default:
-		break
 	}
 	return []byte{}
 }
