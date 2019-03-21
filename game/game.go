@@ -35,20 +35,44 @@ func (s *Game) InitPlayer() {
 }
 
 func (s *Game) InitGalaxy() {
-	s.Galaxy.NameList = []string{
-		"人马座",
-		"烈阳星区",
-		"天狼星区",
-		"北落师门",
-		"PLA",
-		"北极星区",
+	//left: 73vw;
+	//    top: 22vh;
+	//}
+	//.id_beiluo {
+	//    left: 30vw;
+	//    top: 33vh;
+	//}
+	//.id_taiyang {
+	//    left: 50vw;
+	//    top: 10vh;
+	//}
+	//.id_renma {
+	//    left: 7vw;
+	//    top: 18vh;
+	//}
+	//.id_beiji {
+	//    left: 40vw;
+	//    top: 25vh;
+	//}
+	//.id_x {
+	//    left: 5vw;
+	//    top: 45vh;
+
+	s.Galaxy.NameList = [][3]string{
+		{"人马座", "73", "22"},
+		{"烈阳星区", "30", "33"},
+		{"天狼星区", "50", "10"},
+		{"北落师门", "7", "18"},
+		{"PLA星区", "40", "25"},
+		{"X星区", "5", "45"},
+		{"北极星区", "63", "22"},
 	}
 	for i, galaxyName := range s.Galaxy.NameList {
 		planetsLen := RandNum(9, 18, i)
 		planets := make([]*Planet, planetsLen)
 		planets[0] = NewPlanet("gate", "跳跃门", 40, 28)
 		//设置跳跃门舰队（星系主力舰队）
-		//planets[0].Fleet = s.Items.SetRandomFleet(48)
+		planets[0].Fleet = s.Items.SetRandFleet(48)
 		for i := 1; i < planetsLen; i++ {
 			idName, x, y := PlanetNamePool(i)
 			xDistance := x - planets[0].X
@@ -59,9 +83,9 @@ func (s *Game) InitGalaxy() {
 			planets[i].Goods = s.Items.SetRandomGoodsPrice()
 			planets[i].Distance = distance
 			//设置星球护卫舰队
-			//planets[i].Fleet = s.Items.SetRandomFleet(0)
+			planets[i].Fleet = s.Items.SetRandFleet(0)
 		}
-		s.Galaxy.List[galaxyName] = planets
+		s.Galaxy.List[galaxyName[0]] = planets
 	}
 	s.Galaxy.CurrentName = "天狼星区"
 	s.CurrentPlanet = s.Galaxy.List[s.Galaxy.CurrentName][0]

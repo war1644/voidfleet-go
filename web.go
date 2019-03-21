@@ -37,17 +37,18 @@ type ResponseJson struct {
 }
 
 var startData []byte
+var msgData []byte
 var frameData []byte
+var g *game.Game
 
 //var fps = 60
 
 func GameRun() {
-	g := game.NewGame()
-	StartData(g)
-	generateFrames(g)
+	g = game.NewGame()
+	generateFrames()
 }
 
-func generateFrames(g *game.Game) {
+func generateFrames() {
 	loop := 0
 	for !g.Stop {
 		time.Sleep(time.Millisecond * time.Duration(g.Delay))
@@ -61,7 +62,7 @@ func generateFrames(g *game.Game) {
 			}
 		default:
 		}
-		UpdateData(g)
+		//UpdateData()
 		loop++
 		//dst := image.NewRGBA(image.Rect(0, 0, W, H))
 		//gift.New().Draw(dst, assetImages["background"])
@@ -73,9 +74,29 @@ func generateFrames(g *game.Game) {
 	}
 }
 
-func StartData(g *game.Game) {
+func StartData() []byte {
+	//var err error
+	data, err := jsoniter.Marshal(struct {
+		Player *game.Player
+		Planet *game.Planet
+		Galaxy *game.Galaxy
+		Msg    []game.Msg
+	}{
+		Player: g.Player,
+		Planet: g.CurrentPlanet,
+		Galaxy: g.Galaxy,
+		Msg:    g.Event.Get(6),
+	})
+
+	if err != nil {
+		fmt.Println(err)
+	}
+	return data
+}
+
+func UpdateData() {
 	var err error
-	startData, err = jsoniter.Marshal(struct {
+	frameData, err = jsoniter.Marshal(struct {
 		Player *game.Player
 		Planet *game.Planet
 		Galaxy *game.Galaxy
@@ -90,22 +111,17 @@ func StartData(g *game.Game) {
 	}
 }
 
-func UpdateData(g *game.Game) {
-	var err error
-	frameData, err = jsoniter.Marshal(struct {
-		Player *game.Player
-		Planet *game.Planet
-		Galaxy *game.Galaxy
-		Event  *game.Event
+func MsgData() []byte {
+	data, err := jsoniter.Marshal(struct {
+		Msg []game.Msg
 	}{
-		Player: g.Player,
-		Planet: g.CurrentPlanet,
-		Galaxy: g.Galaxy,
+		Msg: g.Event.Get(3),
 	})
 
 	if err != nil {
 		fmt.Println(err)
 	}
+	return data
 }
 
 func createFrame(img image.Image) {
@@ -137,18 +153,22 @@ func eventProcess(event string) []byte {
 	switch event {
 	case "msg":
 		//获取msg
-
-	case "update":
+		return MsgData()
+	case "start":
 		//刷新数据
-	case "start_data":
-		//初始数据
-		return startData
+		return StartData()
+	//case "start_data":
+	//	//初始数据
+	//	return startData
 	default:
 	}
 	return []byte{}
 }
 
 func captureEvent(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "*")             //允许访问所有域
+	w.Header().Add("Access-Control-Allow-Headers", "Content-Type") //header的类型
+	w.Header().Set("content-type", "application/json")
 	event := r.FormValue("event")
 	w.Header().Set("Cache-Control", "no-cache")
 	data := eventProcess(event)

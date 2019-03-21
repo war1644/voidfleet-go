@@ -1,7 +1,7 @@
 package game
 
 type Galaxy struct {
-	NameList    []string
+	NameList    [][3]string
 	List        map[string][]*Planet `json:"-"`
 	Current     []*Planet
 	CurrentName string
@@ -9,7 +9,7 @@ type Galaxy struct {
 
 func NewGalaxy() *Galaxy {
 	return &Galaxy{
-		NameList:    []string{},
+		NameList:    [][3]string{},
 		List:        make(map[string][]*Planet, 32),
 		CurrentName: "天狼星区",
 	}
@@ -35,6 +35,8 @@ func (s *Galaxy) Jump() {
 	case "北落师门":
 		s.CurrentName = "PLA"
 	case "PLA":
+		s.CurrentName = "X星区"
+	case "X星区":
 		s.CurrentName = "北极星区"
 	case "北极星区":
 		s.CurrentName = "人马座"

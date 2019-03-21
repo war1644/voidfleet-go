@@ -1,4 +1,5 @@
 let Lib = {
+    host:"http://127.0.0.1:1212",
     isChrome:false,
     OSX:false,
     loop:(callback,fps=60)=>{

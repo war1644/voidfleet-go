@@ -59,7 +59,7 @@ func (s *Items) SetRandomGoodsPrice() []Goods {
 }
 
 //为各星球生成舰队
-func (s *Items) SetRandomFleet(number int) []Ship {
+func (s *Items) SetRandFleet(number int) []Ship {
 	tmpNumber := 0
 	if number > 0 {
 		tmpNumber = number

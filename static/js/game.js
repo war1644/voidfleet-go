@@ -43,11 +43,13 @@ let Game = {
         // Lib.loop(loop);
     },
     update:(json)=>{
-        console.log(JSON.stringify(json));
+        console.log(json);
         Game.playerStatusDomPrecess(json.Player);
-        Game.gameMessageDomProcess(json.Planet);
+        Game.gameMessageDomProcess(json);
         Game.galaxyMapDomProcess(json.Galaxy);
         Game.starMapDomProcess(json.Galaxy.Current);
+
+        // Lib.getJson(Lib.host+'/event?event=msg',Game.gameMessageDomProcess);
     },
     keyListen:()=>{
         document.body.onkeydown = (event)=>{
@@ -93,7 +95,7 @@ let Game = {
         gameItemListDom = document.querySelector(".game_item_list");
 
         //DOM载入结束后，获取数据
-        Lib.getJson('/frame',Game.update);
+        Lib.getJson(Lib.host+'/event?event=start',Game.update);
     },
     playerStatusDomPrecess:(data)=>{
         let dom = '';
@@ -109,20 +111,15 @@ let Game = {
 
     },
     gameMessageDomProcess:(data)=>{
-
-        let events = [
-            {MsgType:"info",MsgTypePill:"信息",Msg:`你已进入${data.Galaxy}-${data.Name},坐标:${data.X},${data.Y}`},
-            {MsgType:"primary",MsgTypePill:"新闻",Msg:`海盗正在袭击${data.Galaxy}-${data.Name},坐标:${data.X},${data.Y}`},
-            {MsgType:"primary",MsgTypePill:"新闻",Msg:`星区警卫队正在前往${data.Galaxy}-${data.Name},坐标:${data.X},${data.Y}`},
-            {MsgType:"success",MsgTypePill:"任务",Msg:`test任务,坐标:0,0`},
-        ];
-        let dom = "";
+        let dom = "",events = data.Msg;
         for (let k in events) {
             let msg = events[k];
             dom += `
-        <p class="x-small"><span class="badge badge-${msg.MsgType} badge-pill">${msg.MsgTypePill}</span>${msg.Msg}</p>
+        <p class="small"><span class="badge badge-${msg.MsgType} badge-pill">${msg.MsgTypePill}</span>${msg.MsgText}</p>
         `;
         }
+        // let domNode = document.createTextNode(dom);
+        // gameMessageDom.appendChild(domNode)
         gameMessageDom.innerHTML = dom;
     // <p class="x-small"><span class="badge badge-info badge-pill">信息</span>正在停靠空间站</p>
     //     <p class="x-small"><span class="badge badge-info badge-pill">信息</span>到达天狼星区殖民星球1</p>
@@ -130,39 +127,27 @@ let Game = {
     //     <p class="x-small"><span class="badge badge-success badge-pill">任务</span>运送能量电池完成</p>
     },
     starMapDomProcess:(data)=>{
-
-        /*
-        * <span class="xx-small badge badge-info move-dom id_gate" id="">跳跃门</span>
-                        <span class="xx-small badge badge-info move-dom id_star1" id="">殖民星球1</span>
-                        <span class="xx-small badge badge-info move-dom id_star2" id="">殖民星球2</span>
-                        <span class="xx-small badge badge-info move-dom id_star3" id="">殖民星球3</span>
-                        <span class="xx-small badge badge-info move-dom id_station" id="">空间站A</span>
-                        <span class="xx-small badge badge-info move-dom id_pirate_base" id="">海盗基地</span>
-                        <span class="xx-small badge badge-info move-dom id_outpost" id="">军事前哨</span>
-                        <span class="xx-small badge badge-warning move-dom id_main_fleet" id="">主力舰队</span>
-                        <span class="xx-small badge badge-warning move-dom id_outpost_fleet" id="">巡逻舰队</span>
-        * */
+        let dom = "",star = data;
+        for (let k in data) {
+            let info = data[k];
+            dom += `
+        <span class="small badge badge-warning move-dom" style="left: ${info.X}vw;top: ${info.Y}vh;">${info.Name}</span>
+        `;
+        }
+        starMapDom.innerHTML = dom;
     },
     galaxyMapDomProcess:(data)=>{
+        let dom = "",galaxy = data.NameList;
+        for (let k in galaxy) {
+            let info = galaxy[k];
+            dom += `
+        <span class="x-small badge badge-warning move-dom" style="left: ${info[1]}vw;top: ${info[2]}vh;">
+             <b>${info[0]}</b>
+        </span>
+        `;
+        }
+        galaxyMapDom.innerHTML = dom;
 
-        /*<span class="x-small badge badge-info move-dom id_tiannang" id="">
-                            <b>天狼星区</b>
-                        </span>
-                            <span class="x-small badge badge-info move-dom id_renma" id="">
-                            <b>人马座</b>
-                        </span>
-                            <span class="x-small badge badge-info move-dom id_taiyang" id="">
-                            <b>太阳系</b>
-                        </span>
-                            <span class="x-small badge badge-info move-dom id_beiluo" id="">
-                            <b>北落师门</b>
-                        </span>
-                            <span class="x-small badge badge-info move-dom id_beiji" id="">
-                            <b>北极星区</b>
-                        </span>
-                            <span class="x-small badge badge-info move-dom id_x" id="">
-                            <b>X星区</b>
-                        </span>*/
     }
 };
 
