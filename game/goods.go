@@ -6,6 +6,8 @@ type Goods struct {
 	StandardPrice int
 	IsEquip       bool
 	Quantity      int
+	EffectValue   int
+	EffectId      int
 	Describe      string
 }
 

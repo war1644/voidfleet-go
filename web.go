@@ -36,12 +36,14 @@ type ResponseJson struct {
 	Star   *GalaxyJson `json:"star"`
 }
 
+var startData []byte
 var frameData []byte
 
 //var fps = 60
 
 func GameRun() {
 	g := game.NewGame()
+	StartData(g)
 	generateFrames(g)
 }
 
@@ -59,7 +61,7 @@ func generateFrames(g *game.Game) {
 			}
 		default:
 		}
-		NewData(g)
+		UpdateData(g)
 		loop++
 		//dst := image.NewRGBA(image.Rect(0, 0, W, H))
 		//gift.New().Draw(dst, assetImages["background"])
@@ -71,9 +73,9 @@ func generateFrames(g *game.Game) {
 	}
 }
 
-func NewData(g *game.Game) {
+func StartData(g *game.Game) {
 	var err error
-	frameData, err = jsoniter.Marshal(struct {
+	startData, err = jsoniter.Marshal(struct {
 		Player *game.Player
 		Planet *game.Planet
 		Galaxy *game.Galaxy
@@ -88,12 +90,13 @@ func NewData(g *game.Game) {
 	}
 }
 
-func InitData(g *game.Game) {
+func UpdateData(g *game.Game) {
 	var err error
 	frameData, err = jsoniter.Marshal(struct {
 		Player *game.Player
 		Planet *game.Planet
 		Galaxy *game.Galaxy
+		Event  *game.Event
 	}{
 		Player: g.Player,
 		Planet: g.CurrentPlanet,
@@ -111,6 +114,15 @@ func createFrame(img image.Image) {
 	base64.StdEncoding.EncodeToString(buf.Bytes())
 }
 
+//func startFrame(w http.ResponseWriter, r *http.Request) {
+//
+//	len, err := w.Write(startData)
+//	if err != nil {
+//		fmt.Println(err)
+//	}
+//	fmt.Println(len)
+//}
+
 func loopFrame(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Cache-Control", "no-cache")
 	len, err := w.Write(frameData)
@@ -121,23 +133,33 @@ func loopFrame(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(len)
 }
 
-func eventProcess(enevt string) {
+func eventProcess(event string) []byte {
+	switch event {
+	case "msg":
+		//获取msg
 
+		break
+	case "update":
+		//刷新数据
+		break
+	case "start_data":
+		//初始数据
+		return startData
+	default:
+		break
+	}
+	return []byte{}
 }
 
 func captureEvent(w http.ResponseWriter, r *http.Request) {
 	event := r.FormValue("event")
-	switch event {
-	case "key":
-		break
-	case "event":
-		eventValue := r.FormValue("value")
-		eventProcess(eventValue)
-		break
-	default:
-		break
-	}
 	w.Header().Set("Cache-Control", "no-cache")
+	data := eventProcess(event)
+	len, err := w.Write(data)
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(len)
 }
 
 func captureKey(w http.ResponseWriter, r *http.Request) {
@@ -145,6 +167,6 @@ func captureKey(w http.ResponseWriter, r *http.Request) {
 	if key == "" {
 		key = "Space"
 	}
-	events <- key
 	w.Header().Set("Cache-Control", "no-cache")
+	events <- key
 }

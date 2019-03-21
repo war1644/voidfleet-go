@@ -75,7 +75,7 @@ let Lib = {
     },
     env:()=>{
         let u = window.navigator.userAgent; // 通过navigator.userAgent获取当前浏览器的信息
-        Lib.Chrome = u.indexOf('Chrome') > -1; //Chrome
+        Lib.isChrome = u.indexOf('Chrome') > -1; //Chrome
         Lib.OSX = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);//OSX
     },
 };

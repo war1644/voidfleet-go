@@ -38,6 +38,10 @@ func NewPlayer(money int, newShip Ship, planet *Planet, game *Game) *Player {
 	return player
 }
 
+func (s *Player) AddKill(number int) {
+	s.Kill += number
+}
+
 func (s *Player) CalculateYears() {
 	if s.Day > 365 {
 		s.Day -= 365

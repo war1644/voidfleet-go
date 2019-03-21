@@ -10,16 +10,18 @@ type Game struct {
 	Stop          bool
 	Delay         int
 	Load          *Load
+	MsgType       [3]string
 }
 
 func NewGame() *Game {
 	game := &Game{
-		Delay:  10,
-		IsJump: true,
-		Stop:   false,
-		Galaxy: NewGalaxy(),
-		Items:  NewItems(),
-		Event:  NewEvent(),
+		MsgType: [3]string{"info", "primary", "success"},
+		Delay:   10,
+		IsJump:  true,
+		Stop:    false,
+		Galaxy:  NewGalaxy(),
+		Items:   NewItems(),
+		Event:   NewEvent(),
 	}
 	game.InitGalaxy()
 	game.InitPlayer()
@@ -62,4 +64,7 @@ func (s *Game) InitGalaxy() {
 	s.Galaxy.CurrentName = "天狼星区"
 	s.CurrentPlanet = s.Galaxy.List[s.Galaxy.CurrentName][0]
 	s.Galaxy.SetCurrent(s.Galaxy.CurrentName)
+
+	//星区星系生成完成，输出信息
+	s.Event.NewMsg(s.MsgType[0], s.Galaxy.CurrentName)
 }
