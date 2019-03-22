@@ -56,7 +56,7 @@ let Game = {
             // if ( event.key === "enter" ) {
             //     event.preventDefault();
             // }
-            Lib.get('/event?event='+event.key);
+            // Lib.get('/event?event='+event.key);
         };
     },
     bindEvent:()=>{
