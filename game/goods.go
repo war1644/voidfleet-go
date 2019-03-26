@@ -17,7 +17,7 @@ func NewGoods(goodsName, goodsDescribe string, goodsPrice int, isEquip bool) Goo
 		Price:         goodsPrice,
 		StandardPrice: goodsPrice,
 		Describe:      goodsDescribe,
-		Quantity:      0,
+		Quantity:      1,
 		IsEquip:       isEquip,
 	}
 }

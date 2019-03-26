@@ -32,34 +32,20 @@ func NewGame() *Game {
 
 func (s *Game) InitPlayer() {
 	s.Player = NewPlayer(999, s.Items.Ships[2], s.CurrentPlanet, s)
+	//加些物品
+	goods1 := s.Items.Goods[5-1]
+	goods2 := s.Items.Goods[7-1]
+	goods3 := s.Items.Goods[11-1]
+	goods1.Quantity = 1
+	goods2.Quantity = 2
+	goods3.Quantity = 99
+	s.Player.AddCargoGoods(goods1, goods2, goods3)
 }
 
 func (s *Game) InitGalaxy() {
-	//left: 73vw;
-	//    top: 22vh;
-	//}
-	//.id_beiluo {
-	//    left: 30vw;
-	//    top: 33vh;
-	//}
-	//.id_taiyang {
-	//    left: 50vw;
-	//    top: 10vh;
-	//}
-	//.id_renma {
-	//    left: 7vw;
-	//    top: 18vh;
-	//}
-	//.id_beiji {
-	//    left: 40vw;
-	//    top: 25vh;
-	//}
-	//.id_x {
-	//    left: 5vw;
-	//    top: 45vh;
 
 	s.Galaxy.NameList = [][3]string{
-		{"人马座", "73", "22"},
+		{"人马座", "75", "50"},
 		{"烈阳星区", "30", "33"},
 		{"天狼星区", "50", "10"},
 		{"北落师门", "7", "18"},

@@ -54,19 +54,19 @@ func abs(n int) int {
 func PlanetNamePool(seed int) ([2]string, int, int) {
 	x := RandNum(0, 80, seed)
 	y := RandNum(7, 64, seed)
-	planetNumber := RandNum(1, 500, seed)
+	planetNumber := RandNum(1, 99, seed)
 	/*星区图 0,7 80,7 0,64 80,64*/
-	name := [9][2]string{
+	name := [][2]string{
 		{"殖民星球" + strconv.Itoa(planetNumber), "star_1"},
 		{"开发星球" + strconv.Itoa(planetNumber), "star_2"},
 		{"空间站", "space_station"},
 		{"海盗基地", "pirate_base"},
-		{"海盗舰队", "pirate_fleet"},
-		{"海盗小队", "pirate_group"},
+		//{"海盗舰队", "pirate_fleet"},
+		//{"海盗小队", "pirate_group"},
 		{"军事前哨", "outpost"},
-		{"巡逻舰队", "outpost_fleet"},
-		{"星系主力舰队", "main_fleet"},
+		//{"巡逻舰队", "outpost_fleet"},
+		//{"星系主力舰队", "main_fleet"},
 	}
-	i := RandNum(0, 8, seed)
+	i := RandNum(0, len(name), seed)
 	return name[i], x, y
 }

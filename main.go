@@ -35,6 +35,7 @@ func main() {
 	prefixChannel := make(chan string)
 	go startServer(prefixChannel)
 	url := <-prefixChannel
+	fmt.Println(url, "开始监听")
 	w := webview.New(
 		webview.Settings{
 			Width:                  W,
@@ -59,6 +60,8 @@ func startServer(prefixChannel chan string) {
 	mux.HandleFunc("/frame", loopFrame)
 	mux.HandleFunc("/event", captureEvent)
 	mux.HandleFunc("/key", captureKey)
+	//如果接收者没有处理，会阻塞
+	fmt.Println("http://127.0.0.1"+PORT, "开始监听")
 	prefixChannel <- "http://127.0.0.1" + PORT
 	err := http.ListenAndServe(PORT, mux)
 	if err != nil {

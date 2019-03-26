@@ -165,15 +165,18 @@ func (s *Player) BuyGood(goods Goods) {
 	}
 }
 
-func (s *Player) AddCargoGoods(goods Goods) {
-	// v是copy
-	v, ok := s.Cargo[goods.Name]
-	if ok {
-		v.Quantity += goods.Quantity
-		s.Cargo[goods.Name] = v
-	} else {
-		s.Cargo[goods.Name] = goods
+func (s *Player) AddCargoGoods(goods ...Goods) {
+	for _, item := range goods {
+		// v是copy
+		v, ok := s.Cargo[item.Name]
+		if ok {
+			v.Quantity += item.Quantity
+			s.Cargo[item.Name] = v
+		} else {
+			s.Cargo[item.Name] = item
+		}
 	}
+
 }
 
 func (s *Player) GetState() {

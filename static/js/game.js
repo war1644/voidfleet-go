@@ -92,7 +92,7 @@ let Game = {
         galaxyMapDom = document.querySelector(".galaxy_map");
         factionMapDom = document.querySelector(".faction_map");
         menuListDom = document.querySelector(".menu_list");
-        gameItemListDom = document.querySelector(".game_item_list");
+        cargoListDom = document.querySelector(".cargo_list");
 
         //DOM载入结束后，获取数据
         Lib.getJson(Lib.host+'/event?event=start',Game.update);
@@ -144,6 +144,26 @@ let Game = {
         <span class="x-small badge badge-warning move-dom" style="left: ${info[1]}vw;top: ${info[2]}vh;">
              <b>${info[0]}</b>
         </span>
+        `;
+        }
+        galaxyMapDom.innerHTML = dom;
+
+    },
+
+    cargoListDomProcess:(data)=>{
+        let dom = "",items = data;
+        for (let k in items) {
+            let info = items[k];
+            dom += `
+        <li class="list-group-item list-group-item-action">
+                        <div class="row">
+                            <div class="col-10 border">
+                                <p>${info.Name}</p>
+                                <span>${info.Quantity}</span>
+                            </div>
+                            <div class="col-2 border align-content-center"><span class="badge badge-pill badge-warning">卖</span><span class="badge badge-pill badge-warning">弹射</span></div>
+                        </div>
+                    </li>
         `;
         }
         galaxyMapDom.innerHTML = dom;

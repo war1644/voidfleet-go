@@ -8,5 +8,5 @@ let
     galaxyMapDom,
     factionMapDom,
     menuListDom,
-    gameItemListDom;
+    cargoListDom;
 
