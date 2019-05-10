@@ -9,4 +9,5 @@ let
     factionMapDom,
     menuListDom,
     cargoListDom;
+    fleetListDom;
 

@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/zserge/webview"
+	//"github.com/zserge/webview"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -27,26 +27,26 @@ func init() {
 
 //考虑以后可移植性，这个只拿来debug
 //数据通信直接用js fetch
-func handleRPC(w webview.WebView, data string) {
-	fmt.Println("js console: ", data)
-}
+//func handleRPC(w webview.WebView, data string) {
+//	fmt.Println("js console: ", data)
+//}
 
 func main() {
 	prefixChannel := make(chan string)
 	go startServer(prefixChannel)
 	url := <-prefixChannel
-	fmt.Println(url, "开始监听")
-	w := webview.New(
-		webview.Settings{
-			Width:                  W,
-			Height:                 H,
-			Title:                  "Void Fleet",
-			URL:                    url + STATIC + "index.html",
-			ExternalInvokeCallback: handleRPC,
-			Debug:                  true,
-		})
-	defer w.Exit()
-	w.Run()
+	fmt.Println(url, "main开始监听")
+	//w := webview.New(
+	//	webview.Settings{
+	//		Width:                  W,
+	//		Height:                 H,
+	//		Title:                  "Void Fleet",
+	//		URL:                    url + STATIC + "index.html",
+	//		ExternalInvokeCallback: handleRPC,
+	//		Debug:                  true,
+	//	})
+	//defer w.Exit()
+	//w.Run()
 }
 
 func startServer(prefixChannel chan string) {
@@ -60,11 +60,11 @@ func startServer(prefixChannel chan string) {
 	mux.HandleFunc("/frame", loopFrame)
 	mux.HandleFunc("/event", captureEvent)
 	mux.HandleFunc("/key", captureKey)
-	//如果接收者没有处理，会阻塞
 	fmt.Println("http://127.0.0.1"+PORT, "开始监听")
-	prefixChannel <- "http://127.0.0.1" + PORT
 	err := http.ListenAndServe(PORT, mux)
 	if err != nil {
 		fmt.Println("http.ListenAndServe error : ", err)
 	}
+	//如果接收者没有处理，会阻塞
+	prefixChannel <- "http://127.0.0.1" + PORT
 }

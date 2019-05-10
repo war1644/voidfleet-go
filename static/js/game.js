@@ -48,7 +48,8 @@ let Game = {
         Game.gameMessageDomProcess(json);
         Game.galaxyMapDomProcess(json.Galaxy);
         Game.starMapDomProcess(json.Galaxy.Current);
-
+        Game.cargoListDomProcess(json.Player.Cargo);
+        Game.fleetListDomProcess(json.Player.Fleet);
         // Lib.getJson(Lib.host+'/event?event=msg',Game.gameMessageDomProcess);
     },
     keyListen:()=>{
@@ -93,6 +94,7 @@ let Game = {
         factionMapDom = document.querySelector(".faction_map");
         menuListDom = document.querySelector(".menu_list");
         cargoListDom = document.querySelector(".cargo_list");
+        fleetListDom = document.querySelector(".fleet_list");
 
         //DOM载入结束后，获取数据
         Lib.getJson(Lib.host+'/event?event=start',Game.update);
@@ -159,15 +161,31 @@ let Game = {
                         <div class="row">
                             <div class="col-10 border">
                                 <p>${info.Name}</p>
-                                <span>${info.Quantity}</span>
+                                <span>x ${info.Quantity}</span>
                             </div>
-                            <div class="col-2 border align-content-center"><span class="badge badge-pill badge-warning">卖</span><span class="badge badge-pill badge-warning">弹射</span></div>
+                            <div class="col-2 border align-content-center"><span class="badge badge-pill badge-warning">卖</span><span class="badge badge-pill badge-warning">扔</span></div>
                         </div>
                     </li>
         `;
         }
-        galaxyMapDom.innerHTML = dom;
-
+        cargoListDom.innerHTML = dom;
+    },
+    fleetListDomProcess:(data)=>{
+        let dom = "",items = data;
+        for (let k in items) {
+            let info = items[k];
+            dom += `
+        <li class="list-group-item list-group-item-action">
+                        <div class="row">
+                            <div class="col-10 border">
+                                <p>${info.Name}</p>
+<!--                                <span>x ${info.Price}</span>-->
+                            </div>
+                        </div>
+                    </li>
+        `;
+        }
+        fleetListDom.innerHTML = dom;
     }
 };
 
