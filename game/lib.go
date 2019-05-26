@@ -24,7 +24,7 @@ func generateRandomNumber(start int, end int, count int) []int {
 	r := rand.New(rand.NewSource(time.Now().UnixNano()))
 	for len(nums) < count {
 		//生成随机数
-		num := r.Intn((end - start)) + start
+		num := r.Intn(end-start) + start
 		//查重
 		exist := false
 		for _, v := range nums {
@@ -46,9 +46,11 @@ func RandFloat(min, max int) float32 {
 	return float32(randNum)
 }
 
-func abs(n int) int {
-	y := n >> 63
-	return (n ^ y) - y
+func Abs(n int) int {
+	if n >= 0 {
+		return n
+	}
+	return -n
 }
 
 func PlanetNamePool(seed int) ([2]string, int, int) {

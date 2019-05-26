@@ -74,7 +74,7 @@ func (s *Player) SetPlant(toPlanet *Planet, game *Game) {
 }
 
 func (s *Player) CalculatePlanetsDistance(toPlanet *Planet) int {
-	return abs(toPlanet.Distance - s.Planet.Distance)
+	return Abs(toPlanet.Distance - s.Planet.Distance)
 }
 
 func (s *Player) AddCredits(money int) {

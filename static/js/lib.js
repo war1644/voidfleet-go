@@ -64,12 +64,13 @@ let Lib = {
     },
 
     eventDelegate: ()=>{
-        document.body.onclick = (ev)=>{
-            ev = ev || window.event;
-            let target = ev.target || ev.srcElement;
+        document.body.onclick = (e)=>{
+            e = e || window.event;
+            let target = e.target || e.srcElement;
+            // console.log("target: ",target);
             for (let k of Event.keys) {
                 if (target.matches(k)){
-                    Event.on(k)
+                    Event.on(k,e)
                 }
             }
         }
@@ -88,7 +89,7 @@ let Event = {
         Event.events[key] = callback;
         Event.keys.push(key);
     },
-    on:(key)=>{
-        return Event.events[key]()
+    on:(key,e)=>{
+        return Event.events[key](e)
     },
 };

@@ -8,6 +8,6 @@ let
     galaxyMapDom,
     factionMapDom,
     menuListDom,
-    cargoListDom;
+    cargoListDom,
     fleetListDom;
 

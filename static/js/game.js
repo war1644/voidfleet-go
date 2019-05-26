@@ -60,6 +60,7 @@ let Game = {
             // Lib.get('/event?event='+event.key);
         };
     },
+
     bindEvent:()=>{
         // Game.mutationObserver = new MutationObserver((mutations)=>{
         //     mutations.forEach((mutation)=>{
@@ -120,23 +121,31 @@ let Game = {
         <p class="small"><span class="badge badge-${msg.MsgType} badge-pill">${msg.MsgTypePill}</span>${msg.MsgText}</p>
         `;
         }
-        // let domNode = document.createTextNode(dom);
-        // gameMessageDom.appendChild(domNode)
-        gameMessageDom.innerHTML = dom;
-    // <p class="x-small"><span class="badge badge-info badge-pill">信息</span>正在停靠空间站</p>
-    //     <p class="x-small"><span class="badge badge-info badge-pill">信息</span>到达天狼星区殖民星球1</p>
-    //     <p class="x-small"><span class="badge badge-primary badge-pill">新闻</span>海盗正在攻击天狼星区巡逻队</p>
-    //     <p class="x-small"><span class="badge badge-success badge-pill">任务</span>运送能量电池完成</p>
+        gameMessageDom.innerHTML += dom;
+    //badge-info 信息
+    //badge-primary
+    //badge-success 任务
+    },
+    starMapEvent:()=>{
+        Event.add(".move-dom",(e)=>{
+            let dom = e.target;
+            console.log("点击了move-dom",e.target);
+
+
+        });
     },
     starMapDomProcess:(data)=>{
-        let dom = "",star = data;
+        let dom = "" ;
         for (let k in data) {
-            let info = data[k];
-            dom += `
-        <span class="small badge badge-warning move-dom" style="left: ${info.X}vw;top: ${info.Y}vh;">${info.Name}</span>
+            if (data.hasOwnProperty(k)){
+                let info = data[k];
+                dom += `
+        <span class="small badge badge-warning move-dom" data-name="${info.Name}" style="left: ${info.X}vw;top: ${info.Y}vh;">${info.Name}</span>
         `;
+            }
         }
         starMapDom.innerHTML = dom;
+        Game.starMapEvent();
     },
     galaxyMapDomProcess:(data)=>{
         let dom = "",galaxy = data.NameList;
