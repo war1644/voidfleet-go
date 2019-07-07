@@ -3,8 +3,10 @@ package main
 import (
 	"bytes"
 	"encoding/base64"
+	"encoding/json"
 	"fmt"
-	"github.com/json-iterator/go"
+	//jsoniter "github.com/json-iterator/go"
+	//"github.com/json-iterator/go"
 	"image"
 	"image/png"
 	"net/http"
@@ -12,10 +14,10 @@ import (
 	"void_fleet/game"
 )
 
-var asset = [][2]string{
-	{"background", "asset/img/bg.png"},
-	{"sprites", "asset/img/sprites.png"},
-}
+//var asset = [][2]string{
+//	{"background", "asset/img/bg.png"},
+//	{"sprites", "asset/img/sprites.png"},
+//}
 
 type PlayerJson struct {
 }
@@ -36,8 +38,8 @@ type ResponseJson struct {
 	Star   *GalaxyJson `json:"star"`
 }
 
-var startData []byte
-var msgData []byte
+//var startData []byte
+//var msgData []byte
 var frameData []byte
 var g *game.Game
 
@@ -76,7 +78,7 @@ func generateFrames() {
 
 func StartData() []byte {
 	//var err error
-	data, err := jsoniter.Marshal(struct {
+	data, err := json.Marshal(struct {
 		Player *game.Player
 		Planet *game.Planet
 		Galaxy *game.Galaxy
@@ -96,7 +98,7 @@ func StartData() []byte {
 
 func UpdateData() {
 	var err error
-	frameData, err = jsoniter.Marshal(struct {
+	frameData, err = json.Marshal(struct {
 		Player *game.Player
 		Planet *game.Planet
 		Galaxy *game.Galaxy
@@ -112,7 +114,7 @@ func UpdateData() {
 }
 
 func MsgData() []byte {
-	data, err := jsoniter.Marshal(struct {
+	data, err := json.Marshal(struct {
 		Msg []game.Msg
 	}{
 		Msg: g.Event.Get(3),
@@ -126,7 +128,11 @@ func MsgData() []byte {
 
 func createFrame(img image.Image) {
 	var buf bytes.Buffer
-	png.Encode(&buf, img)
+	var err = png.Encode(&buf, img)
+	if err != nil {
+		fmt.Println(err)
+	}
+
 	base64.StdEncoding.EncodeToString(buf.Bytes())
 }
 

@@ -14,7 +14,7 @@ var events chan string // js events
 const STATIC = "/static/"
 const PORT = ":1212"
 
-var W, H = 400, 600
+//var W, H = 400, 600
 
 func init() {
 	events = make(chan string, 100)
