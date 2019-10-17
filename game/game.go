@@ -15,6 +15,7 @@ type Game struct {
 
 func NewGame() *Game {
 	game := &Game{
+		//info 行为信息 primary 新闻 success任务
 		MsgType: [3]string{"info", "primary", "success"},
 		Delay:   10,
 		IsJump:  true,
