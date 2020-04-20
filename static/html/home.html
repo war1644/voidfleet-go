@@ -1,93 +1,114 @@
-<div class="container-fluid d-flex vh-100 bg-dark">
-    <div class="row flex-fill text-white tab-content">
-        <div class="menu_galaxy tab-pane fade show active col flex-fill h-90 card bg-dark text-center" role="tabpanel">
-            <div id="status_info" class="row flex-fill h-25">
-                <div class="card bg-dark text-left col-4 player_status">
+<style>
+    .d_flex {
+        display: flex;
+    }
+    #status_info{
+        padding: 10px;
+        width: 100vw;
+        height: 25vh;
+        font-size: 16px;
+        color: #aaa;
+        box-sizing: border-box;
+    }
 
-                </div>
-                <div class="card bg-dark text-left col-8 pre-scrollable scroll-h-100 game_message">
+    .player_status{
+        width: 30%;
+        overflow-y: scroll;
+        height: 100%;
+    }
 
-                </div>
-            </div>
-            <div id="game_map" class="col flex-fill h-75 card bg-dark text-center">
-                <ul class="nav nav-tabs h-10" role="tablist">
-                    <li class="nav-item col"><a class="nav-link active col btn-primary star-map-tab" data-toggle="tab" href=".star_map" role="tab" aria-selected="true">星区</a></li>
-                    <li class="nav-item col"><a class="nav-link col btn-primary galaxy-map-tab" data-toggle="tab" href=".galaxy_map" role="tab" aria-selected="false">星系</a></li>
-                    <li class="nav-item col"><a class="nav-link col btn-primary faction-tab" data-toggle="tab" href=".faction_map" role="tab" aria-selected="false">派系</a></li>
-                </ul>
-                <div class="tab-content h-90 map-apex">
-                    <div class="star_map tab-pane fade show active h-100">
+    .game_message{
+        padding-left: 5px;
+        box-sizing: border-box;
+        flex: 1;
+        overflow-y: scroll;
+        height: 100%;
+    }
 
-                    </div>
-                    <div class="galaxy_map tab-pane fade">
+    .nav_list{
+        justify-content: space-around;
+    }
+    .nav_item{
+        flex: 1;
+        text-align: center;
+        height: 6vh;
+        line-height: 6vh;
+        border-radius: 10px;
+    }
+    .active{
+        background-color: #0062cc;
+    }
 
-                    </div>
-                    <div class="faction_map tab-pane fade">faction</div>
-                </div>
-            </div>
-        </div>
+    .game_map{
+        height: 63vh;
+        position: relative;
+        overflow: scroll;
 
-        <div class="menu_cargo tab-pane fade col flex-fill h-90 card bg-dark text-center" role="tabpanel">
-            <div class="h-10 border d-flex align-items-center">
-                cargo
-            </div>
-            <div class="card flex-fill h-90 bg-dark">
-                <ul class="cargo_list list-group pre-scrollable bg-dark flex-fill scroll-h-90">
-                    <li class="list-group-item list-group-item-action">
-                        <div class="row">
-                            <div class="col-10 border">
-                                <p>能量电池home</p>
-                                <span>x100</span>
-                            </div>
-                            <div class="col-2 border align-content-center"><span class="badge badge-pill badge-warning">卖</span><span class="badge badge-pill badge-warning">弹射</span></div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="menu_fleet tab-pane fade col flex-fill h-90 card bg-dark text-center" role="tabpanel">
-            <div class="h-10 border d-flex align-items-center">
-                fleet
-            </div>
-            <div class="card flex-fill h-90 bg-dark">
-                <ul class="fleet_list list-group pre-scrollable bg-dark
-                flex-fill scroll-h-90">
-                    <li class="list-group-item list-group-item-action">
-                        <div class="row">
-                            <div class="col-10 border">
-                                <p>能量电池home</p>
-                                <span>x100</span>
-                            </div>
-                            <div class="col-2 border align-content-center"><span class="badge badge-pill badge-warning">卖</span><span class="badge badge-pill badge-warning">弹射</span></div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="menu_base tab-pane fade col flex-fill h-90 card bg-dark text-center" role="tabpanel">
+    }
+    .star_map{
+        height: 200%;
+        width: 200%;
+    }
+    .container{
+        flex-direction: column;
+    }
 
-        </div>
-        <div class="menu_system tab-pane fade col flex-fill h-90 card bg-dark text-center" role="tabpanel">
+    .show {
+        display: block;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+</style>
+
+<div class="container">
+    <div id="status_info" class="d_flex">
+        <div class="player_status">
 
         </div>
+        <div class="game_message">
+            <p class="small"><span class="badge badge-info badge-pill">信息</span>到达:天狼星区-跳跃门</p>
 
-        <div class="menu col flex-fill h-10 card bg-dark">
-            <ul class="nav nav-tabs row menu_list" id="myTab" role="tablist">
-                <li class="nav-item col"><a class="nav-link active col btn btn-primary menu-galaxy-tab" data-toggle="tab" href=".menu_galaxy" role="tab" aria-selected="true">状态</a></li>
-                <li class="nav-item col"><a class="nav-link col btn btn-primary menu-cargo-tab" data-toggle="tab" href=".menu_cargo" role="tab" aria-selected="false">货仓</a></li>
-                <li class="nav-item col"><a class="nav-link col btn btn-primary menu-fleet-tab" data-toggle="tab" href=".menu_fleet" role="tab" aria-selected="false">舰队</a></li>
-                <li class="nav-item col"><a class="nav-link col btn btn-primary menu-base-tab" data-toggle="tab" href=".menu_base" role="tab" aria-selected="false">基地</a></li>
-                <li class="nav-item col"><a class="nav-link col btn btn-primary menu-system-tab" data-toggle="tab" href=".menu_system" role="tab" aria-selected="false">系统</a></li>
-            </ul>
+            <p class="small"><span class="badge badge-primary badge-pill">新闻</span>海盗正在袭击:天狼星区-空间站</p>
+
+            <p class="small"><span class="badge badge-primary badge-pill">新闻</span>天狼星区-空间站护卫舰队正在迎战</p>
+
+            <p class="small"><span class="badge badge-primary badge-pill">新闻</span>海盗正在袭击:天狼星区-军事前哨</p>
+
+            <p class="small"><span class="badge badge-primary badge-pill">新闻</span>天狼星区-军事前哨护卫舰队正在迎战</p>
+
+            <p class="small"><span class="badge badge-primary badge-pill">新闻</span>天狼星区-空间站急缺矿石</p>
         </div>
-
     </div>
+
+    <ul class="d_flex nav_list">
+        <button class="nav_item btn-primary active" data-menu=".star_map">星区</button>
+        <button class="nav_item btn-primary" data-menu=".galaxy_map">星系</button>
+        <button class="nav_item btn-primary" data-menu=".faction_map">派系</button>
+    </ul>
+
+
+    <div class="game_map">
+        <div class="star_map">
+
+        </div>
+        <div class="galaxy_map hidden">
+
+        </div>
+        <div class="faction_map hidden"></div>
+    </div>
+
+    <ul class="d_flex nav_list menu">
+        <button class="nav_item btn-primary active" data-menu=".menu_map">状态</button>
+        <button class="nav_item btn-primary" data-menu=".menu_cargo">货仓</button>
+        <button class="nav_item btn-primary" data-menu=".menu_fleet">舰队</button>
+        <button class="nav_item btn-primary" data-menu=".menu_base">基地</button>
+        <button class="nav_item btn-primary" data-menu=".menu_system">系统</button>
+    </ul>
 </div>
 
+<script>
 
-
-
-
-
-
-
+</script>

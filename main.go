@@ -68,3 +68,5 @@ func startServer(prefixChannel chan string) {
 	//如果接收者没有处理，会阻塞
 	prefixChannel <- "http://127.0.0.1" + PORT
 }
+
+

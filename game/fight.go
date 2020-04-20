@@ -25,16 +25,13 @@ func Start(item *Items, player *Player, aiShip *Ship) bool {
 		weaponIndex := RandNum(0, len(weapon), playerHp)
 		aiWeaponIndex := RandNum(0, len(weapon), aiHp)
 		if isFirst == 1 {
-			display.AutoShow("我方沉着应战")
-			display.AutoShow(weapon[weaponIndex] + " 齐射")
-			display.AutoShow("敌方躲闪不急")
-			display.AutoShow("敌方躲闪不急，受到" + string(player.Ship.Attack))
+			display.AutoShow(weapon[weaponIndex] + " 攻击！")
+			display.AutoShow("敌方受到" + string(player.Ship.Attack))
 			aiHp -= player.Ship.Attack
 			isFirst = 0
 		} else {
-			display.AutoShow("敌人气势汹汹")
-			display.AutoShow(weapon[aiWeaponIndex] + " 密集射来!")
-			display.AutoShow("我方机体受损，装甲减少{aiHp}" + string(aiShip.Attack))
+			display.AutoShow(weapon[aiWeaponIndex] + " 攻击！")
+			display.AutoShow("我方受到{aiHp}" + string(aiShip.Attack))
 			playerHp -= aiShip.Attack
 			isFirst = 1
 		}
@@ -57,4 +54,8 @@ func Start(item *Items, player *Player, aiShip *Ship) bool {
 		player.AddCargoGoods(goods)
 	}
 	return true
+}
+
+func Fleet() {
+
 }

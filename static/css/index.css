@@ -1,47 +1,71 @@
-.h-10 {
-    height: 10%!important
-}
-.h-15 {
-    height: 15%!important
-}
-.h-20 {
-    height: 20%!important
-}
-.h-60 {
-    height: 60%!important
-}
-.h-65 {
-    height: 65%!important
-}
-.h-85 {
-    height: 85%!important
-}
-.h-90 {
-    height: 90%!important
-}
-.scroll-h-100{
-    max-height:100%!important
-}
-.scroll-h-90{
-    max-height:90%!important
-}
-.vh-90{height:90vh!important}
-
-.container-fluid {
-    padding-right: 0;
-    padding-left: 0;
-}
-.row {
-    margin-right: 0;
-    margin-left: 0;
-}
-.col, .col-1, .col-10, .col-11, .col-12, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-auto, .col-lg, .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-auto, .col-md, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-auto, .col-sm, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-auto, .col-xl, .col-xl-1, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-auto {
-    padding-right: 0;
-    padding-left: 0;
-}
-
-p {
+* {
     margin: 0;
+    padding: 0;
+    border: 0;
+}
+li {
+    list-style: none;
+}
+
+body{
+    overflow: hidden;
+    background-color: #343a40;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    font-size: 1em;
+    /*text-align: center;*/
+}
+
+.bg-dark{
+    background-color: #343a40;
+}
+
+.badge-info {
+    color: #fff;
+    background-color: #17a2b8;
+}
+.badge-primary {
+    color: #fff;
+    background-color: #007bff;
+}
+.badge-success {
+    color: #fff;
+    background-color: #28a745;
+}
+
+.badge-pill {
+    padding-right: .6em;
+    padding-left: .6em;
+    border-radius: 10rem;
+}
+.badge-warning {
+    color: #212529;
+    background-color: #ffc107;
+}
+
+.badge {
+    display: inline-block;
+    padding: .25em .4em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    border-radius: .25rem;
+}
+
+
+
+.btn-primary {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn {
+    text-align: center;
+    height: 44px;
+    line-height: 44px;
+    border-radius: 10px;
 }
 
 .x-small {
@@ -57,15 +81,11 @@ p {
 .list-group-item {
     padding:0;
 }
-
 .move-dom {
     position: absolute;
 }
 
 /*星系图*/
-.map-apex{
-    position: relative;
-}
 .id_tiannang {
     left: 73vw;
     top: 22vh;
@@ -92,41 +112,4 @@ p {
 }
 
 /*星区图 0,7 80,7 0,64 80,64*/
-.id_pirate_base {
-    left: 73vw;
-    top: 22vh;
-}
-.id_star1 {
-    left: 40vw;
-    top: 44vh;
-}
-.id_star2 {
-    left: 50vw;
-    top: 10vh;
-}
-.id_star3 {
-    left: 80vw;
-    top: 40vh;
-}
-.id_station {
-    left: 3vw;
-    top: 23vh;
-}
-.id_gate {
-    left: 45vw;
-    top: 27vh;
-}
-.id_outpost {
-    left: 15vw;
-    top: 32vh;
-}
 
-/*舰队*/
-.id_main_fleet{
-    left: 10vw;
-    top: 15vh;
-}
-.id_outpost_fleet{
-    left: 55vw;
-    top: 40vh;
-}

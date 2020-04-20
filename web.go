@@ -147,12 +147,12 @@ func createFrame(img image.Image) {
 
 func loopFrame(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Cache-Control", "no-cache")
-	len, err := w.Write(frameData)
+	i, err := w.Write(frameData)
 	//err := json.NewEncoder(w).Encode(frameData)
 	if err != nil {
 		fmt.Println(err)
 	}
-	fmt.Println(len)
+	fmt.Println(i)
 }
 
 func eventProcess(event string) []byte {
@@ -178,11 +178,11 @@ func captureEvent(w http.ResponseWriter, r *http.Request) {
 	event := r.FormValue("event")
 	w.Header().Set("Cache-Control", "no-cache")
 	data := eventProcess(event)
-	len, err := w.Write(data)
+	i, err := w.Write(data)
 	if err != nil {
 		fmt.Println(err)
 	}
-	fmt.Println(len)
+	fmt.Println(i)
 }
 
 func captureKey(w http.ResponseWriter, r *http.Request) {

@@ -1,15 +1,14 @@
-let Lib = {
+const Lib = {
     host:"http://127.0.0.1:1212",
     isChrome:false,
     OSX:false,
-    loop:(callback,fps=60)=>{
-        let lastTime,then=0;
+    frames:0,
+    loop:(callback,fps=30)=>{
         let gameLoop = ()=>{
-            let now = Date.now();
-            lastTime = now - then;
-            if (lastTime>fps) {
+            if(Lib.frames % fps === 0){
                 callback();
             }
+            Lib.frames ++;
             window.requestAnimationFrame(gameLoop);
         };
         gameLoop();
@@ -54,8 +53,7 @@ let Lib = {
             redirect: "follow", // manual, *follow, error
             referrer: "no-referrer", // no-referrer, *client
             body: JSON.stringify(data), // body data type must match "Content-Type" header
-        })
-            .then(response => response.json()); // parses response to JSON
+        }).then(response => response.json()); // parses response to JSON
     },
 
     getJsonLength: (json)=>{
@@ -82,7 +80,7 @@ let Lib = {
     },
 };
 
-let Event = {
+const Event = {
     keys:[],
     events: {},
     add:(key,callback)=>{

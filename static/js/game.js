@@ -10,21 +10,21 @@ let Game = {
     mutationObserver:{},
     init:()=>{
         Lib.env();
-        if (!Lib.isChrome){
-            //console output
-            window.console.log = (s)=>{
-                external.invoke('{"type":"log","data":"'+JSON.stringify(s)+'"}')
-            };
-            window.console.debug=(s)=>{
-                external.invoke('{"type":"debug","data":"'+JSON.stringify(s)+'"}')
-            };
-            window.console.warn=(s)=>{
-                external.invoke('{"type":"warn","data":"'+JSON.stringify(s)+'"}')
-            };
-            window.console.error=(s)=>{
-                external.invoke('{"type":"error","data":"'+JSON.stringify(s)+'"}')
-            };
-        }
+        // if (!Lib.isChrome){
+        //     //console output
+        //     window.console.log = (s)=>{
+        //         external.invoke('{"type":"log","data":"'+JSON.stringify(s)+'"}')
+        //     };
+        //     window.console.debug=(s)=>{
+        //         external.invoke('{"type":"debug","data":"'+JSON.stringify(s)+'"}')
+        //     };
+        //     window.console.warn=(s)=>{
+        //         external.invoke('{"type":"warn","data":"'+JSON.stringify(s)+'"}')
+        //     };
+        //     window.console.error=(s)=>{
+        //         external.invoke('{"type":"error","data":"'+JSON.stringify(s)+'"}')
+        //     };
+        // }
         console.log("test log");
         console.log(window.navigator.userAgent);
         Lib.eventDelegate();

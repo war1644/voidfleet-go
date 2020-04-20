@@ -43,7 +43,7 @@ func (s *Items) InitGameGoods() {
 		NewGoods("矿石", "", 30, false),
 		NewGoods("金属", "", 50, false),
 		NewGoods("武器", "", 100, false),
-		NewGoods("兴奋剂", "", 1000, false),
+		NewGoods("营养液", "", 20, false),
 		NewGoods("暗物质", "", 450000, false),
 	}
 }
