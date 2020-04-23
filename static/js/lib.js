@@ -23,7 +23,7 @@ const Lib = {
         });
         return params[index]
     },
-    loadHtml:(url,dom=document.body,callback=()=>{})=>{
+    loadHtml:(url,dom=gameWindowDom,callback=()=>{})=>{
         fetch(url).then(data => data.text()).then(data =>{
             dom.innerHTML = data;
             callback()
@@ -65,7 +65,7 @@ const Lib = {
         document.body.onclick = (e)=>{
             e = e || window.event;
             let target = e.target || e.srcElement;
-            // console.log("target: ",target);
+            console.log("target: ",target);
             for (let k of Event.keys) {
                 if (target.matches(k)){
                     Event.on(k,e)

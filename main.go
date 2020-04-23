@@ -36,6 +36,7 @@ func main() {
 	go startServer(prefixChannel)
 	url := <-prefixChannel
 	fmt.Println(url, "main开始监听")
+
 	//w := webview.New(
 	//	webview.Settings{
 	//		Width:                  W,
@@ -47,6 +48,9 @@ func main() {
 	//	})
 	//defer w.Exit()
 	//w.Run()
+}
+
+func cmdTest() {
 }
 
 func startServer(prefixChannel chan string) {
@@ -68,5 +72,3 @@ func startServer(prefixChannel chan string) {
 	//如果接收者没有处理，会阻塞
 	prefixChannel <- "http://127.0.0.1" + PORT
 }
-
-

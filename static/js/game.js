@@ -1,12 +1,23 @@
 window.onload = ()=>{
     Game.init();
-    let params = Lib.getUrlParams("t");
-    if (!params) params = 'start';
-    Lib.loadHtml(`html/${params}.html`);
+    // let params = Lib.getUrlParams("t");
+    // if (!params) params = 'home';
+    // Lib.loadHtml(`html/${params}.html`);
+    Game.start();
 };
 
 
-let Game = {
+const Game = {
+    mask:false,
+    showMask:()=>{
+        if(Game.mask)
+        {
+            maskDom.style.display = 'none';
+        }else{
+            maskDom.style.display = 'block';
+        }
+        Game.mask = !Game.mask;
+    },
     mutationObserver:{},
     init:()=>{
         Lib.env();
@@ -30,9 +41,10 @@ let Game = {
         Lib.eventDelegate();
         Game.bindEvent();
         Game.keyListen();
+        UI.init();
     },
     start:()=>{
-        Lib.loadHtml('html/home.html',document.body,Game.actionDomInit);
+        Lib.loadHtml('html/home.html',gameWindowDom,Game.actionDomInit);
         // Lib.loadHtml('html/fight.html',document.body,()=>{
         //     imgDom = document.querySelector(".fight-screen");
         //     alert(JSON.stringify(imgDom));
@@ -88,6 +100,7 @@ let Game = {
         // Event.add("#save2",Game.start);
     },
     actionDomInit:()=>{
+
         playerStatusDom = document.querySelector(".player_status");
         gameMessageDom = document.querySelector(".game_message");
         starMapDom = document.querySelector(".star_map");
@@ -96,6 +109,7 @@ let Game = {
         menuListDom = document.querySelector(".menu_list");
         cargoListDom = document.querySelector(".cargo_list");
         fleetListDom = document.querySelector(".fleet_list");
+        maskDom = document.querySelector(".mask");
 
         //DOM载入结束后，获取数据
         Lib.getJson(Lib.host+'/event?event=start',Game.update);
@@ -140,7 +154,7 @@ let Game = {
             if (data.hasOwnProperty(k)){
                 let info = data[k];
                 dom += `
-        <span class="small badge badge-warning move-dom" data-name="${info.Name}" style="left: ${info.X}vw;top: ${info.Y}vh;">${info.Name}</span>
+        <span class="badge badge-warning move-dom" data-name="${info.Name}" style="left: ${info.X}vw;top: ${info.Y}vh;">${info.Name}</span>
         `;
             }
         }
@@ -152,7 +166,7 @@ let Game = {
         for (let k in galaxy) {
             let info = galaxy[k];
             dom += `
-        <span class="x-small badge badge-warning move-dom" style="left: ${info[1]}vw;top: ${info[2]}vh;">
+        <span class="badge badge-warning move-dom" style="left: ${info[1]}vw;top: ${info[2]}vh;">
              <b>${info[0]}</b>
         </span>
         `;

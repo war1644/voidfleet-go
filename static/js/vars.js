@@ -9,5 +9,7 @@ let
     factionMapDom,
     menuListDom,
     cargoListDom,
-    fleetListDom;
+    fleetListDom,
+    maskDom,
+    gameWindowDom = document.querySelector(".game_window");
 

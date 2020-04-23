@@ -9,10 +9,26 @@
     <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
+<div class="game_window">
 
+</div>
+
+<ul class="d_flex nav_list menu">
+    <button class="nav_item menu_change  btn-primary active" data-menu=".menu_map">状态</button>
+    <button class="nav_item menu_change btn-primary" data-menu=".menu_cargo">货仓</button>
+    <button class="nav_item menu_change btn-primary" data-menu=".menu_fleet">舰队</button>
+    <button class="nav_item menu_change btn-primary" data-menu=".menu_base">基地</button>
+    <button class="nav_item menu_change btn-primary" data-menu=".menu_system">系统</button>
+</ul>
+<div class="mask">
+    <div class="alert_div_msg">
+
+    </div>
+</div>
 </body>
 <script src="js/vars.js?v=11"></script>
 <script src="js/lib.js?v=11"></script>
 <script src="js/socket.js?v=11"></script>
+<script src="js/ui.js?v=1"></script>
 <script src="js/game.js?v=1"></script>
 </html>

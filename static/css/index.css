@@ -3,19 +3,24 @@
     padding: 0;
     border: 0;
 }
+
 li {
     list-style: none;
 }
 
-body{
+body {
     overflow: hidden;
     background-color: #343a40;
-    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     font-size: 1em;
     /*text-align: center;*/
 }
 
-.bg-dark{
+.d_flex {
+    display: flex;
+}
+
+.bg-dark {
     background-color: #343a40;
 }
 
@@ -23,10 +28,12 @@ body{
     color: #fff;
     background-color: #17a2b8;
 }
+
 .badge-primary {
     color: #fff;
     background-color: #007bff;
 }
+
 .badge-success {
     color: #fff;
     background-color: #28a745;
@@ -37,6 +44,7 @@ body{
     padding-left: .6em;
     border-radius: 10rem;
 }
+
 .badge-warning {
     color: #212529;
     background-color: #ffc107;
@@ -54,7 +62,6 @@ body{
 }
 
 
-
 .btn-primary {
     color: #fff;
     background-color: #007bff;
@@ -68,6 +75,75 @@ body{
     border-radius: 10px;
 }
 
+
+.nav_list {
+    /*水平居中*/
+    justify-content: space-around;
+}
+
+.nav_item {
+    flex: 1;
+    text-align: center;
+    height: 6vh;
+    line-height: 6vh;
+    border-radius: 10px;
+    font-size: 18px;
+}
+
+.active {
+    background-color: #0062cc;
+}
+
+.mask {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 199;
+    display: none;
+}
+
+.alert_div_msg {
+    border: 5px solid #4983f7;
+    background-color: rgba(90, 116, 204, 0.3);
+    display: block;
+    width: 80vw;
+    height: 300px;
+    position: relative;
+}
+
+.clear-btn{
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+.clear-btn-fail{
+    width: 50%;
+    height:49px;
+    line-height: 49px;
+    /*background: rgba(71, 129, 245, 0.73);*/
+}
+.clear-btn-succ{
+    width: 50%;
+    height:49px;
+    line-height: 49px;
+    /*background: rgba(43, 208, 142, 0.53);*/
+}
+
+.small {
+    font-size: 80%;
+    font-weight: 400
+}
+
 .x-small {
     font-size: 60%;
     font-weight: 400
@@ -79,8 +155,9 @@ body{
 }
 
 .list-group-item {
-    padding:0;
+    padding: 0;
 }
+
 .move-dom {
     position: absolute;
 }
@@ -90,22 +167,27 @@ body{
     left: 73vw;
     top: 22vh;
 }
+
 .id_beiluo {
     left: 30vw;
     top: 33vh;
 }
+
 .id_taiyang {
     left: 50vw;
     top: 10vh;
 }
+
 .id_renma {
     left: 7vw;
     top: 18vh;
 }
+
 .id_beiji {
     left: 40vw;
     top: 25vh;
 }
+
 .id_x {
     left: 5vw;
     top: 45vh;

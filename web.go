@@ -5,8 +5,6 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"fmt"
-	//jsoniter "github.com/json-iterator/go"
-	//"github.com/json-iterator/go"
 	"image"
 	"image/png"
 	"net/http"

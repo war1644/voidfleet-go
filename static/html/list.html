@@ -1,40 +1,68 @@
-<div class="container-fluid d-flex flex-column vh-100 bg-dark text-white">
-    <div class="flex-fill text-white tab-content">
-        <div class="menu_cargo tab-pane fade show active col flex-fill h-90 card bg-dark text-center" role="tabpanel">
-            <div class="h-10 border d-flex align-items-center">
-                cargo
-            </div>
-            <div class="card flex-fill h-90 bg-dark">
-                <ul class="game_item_list list-group pre-scrollable bg-dark flex-fill scroll-h-90">
-                    <li class="list-group-item list-group-item-action">
-                        <div class="row">
-                            <div class="col-10 border">
-                                <p>能量电池</p>
-                                <span>x100</span>
-                            </div>
-                            <div class="col-2 border align-content-center"><span class="badge badge-pill badge-warning">use</span><span class="badge badge-pill badge-warning">drop</span></div>
-                        </div>
-                    </li>
-                    <li class="list-group-item list-group-item-action">
-                        <div class="row">
-                            <div class="col-10 border">
-                                <p>能量电池</p>
-                                <span>x100</span>
-                            </div>
-                            <div class="col-2 border align-content-center"><span class="badge badge-pill badge-warning">use</span><span class="badge badge-pill badge-warning">drop</span></div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="menu col flex-fill h-10 card bg-dark">
-            <ul class="nav nav-tabs row menu_list" id="myTab" role="tablist">
-                <li class="nav-item col"><a class="nav-link active col btn btn-primary menu-galaxy-tab" data-toggle="tab" href=".menu_galaxy" role="tab" aria-selected="true">状态</a></li>
-                <li class="nav-item col"><a class="nav-link col btn btn-primary menu-cargo-tab" data-toggle="tab" href=".menu_cargo" role="tab" aria-selected="false">货仓</a></li>
-                <li class="nav-item col"><a class="nav-link col btn btn-primary menu-fleet-tab" data-toggle="tab" href=".menu_fleet" role="tab" aria-selected="false">舰队</a></li>
-                <li class="nav-item col"><a class="nav-link col btn btn-primary menu-base-tab" data-toggle="tab" href=".menu_base" role="tab" aria-selected="false">基地</a></li>
-                <li class="nav-item col"><a class="nav-link col btn btn-primary menu-system-tab" data-toggle="tab" href=".menu_system" role="tab" aria-selected="false">系统</a></li>
-            </ul>
-        </div>
+<style>
+    .header{
+        height: 10vh;
+        line-height: 10vh;
+        text-align: center;
+        border: 5px solid rgba(25,157,255,0.8);
+
+    }
+    .list-group-item{
+        border: 1px solid beige;
+        justify-content: space-around;
+        height: 5vh;
+        line-height: 5vh;
+        margin-top: 1px;
+    }
+
+    .container{
+        flex-direction: column;
+        height: 100vh;
+        color: beige;
+    }
+    .cargo_list{
+        height: 82vh;
+        overflow: scroll;
+    }
+
+
+</style>
+<div class="container d_flex">
+    <div class="menu_cargo">
+        <h2 class="header">货仓</h2>
+        <ul class="cargo_list game_item_list">
+            <li class="d_flex list-group-item list-group-item-action">
+                    <div>
+                        能量电池
+                        <span class="item_quantity">x100</span>
+                    </div>
+                <div class="">
+                    <span class="badge badge-pill badge-warning">使用</span>
+                    <span class="badge badge-pill badge-warning">丢弃</span>
+                </div>
+            </li>
+            <li class="d_flex list-group-item list-group-item-action">
+                <div>
+                    能量电池
+                    <span>x100</span>
+                </div>
+                <div class="">
+                    <span class="badge badge-pill badge-warning">使用</span>
+                    <span class="badge badge-pill badge-warning">丢弃</span>
+                </div>
+            </li><li class="d_flex list-group-item list-group-item-action">
+                <div>
+                    能量电池
+                    <span>x100</span>
+                </div>
+                <div class="">
+                    <span class="badge badge-pill badge-warning">使用</span>
+                    <span class="badge badge-pill badge-warning">丢弃</span>
+                </div>
+            </li>
+        </ul>
     </div>
+
+
+
+
 </div>

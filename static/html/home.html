@@ -1,7 +1,5 @@
 <style>
-    .d_flex {
-        display: flex;
-    }
+
     #status_info{
         padding: 10px;
         width: 100vw;
@@ -25,19 +23,7 @@
         height: 100%;
     }
 
-    .nav_list{
-        justify-content: space-around;
-    }
-    .nav_item{
-        flex: 1;
-        text-align: center;
-        height: 6vh;
-        line-height: 6vh;
-        border-radius: 10px;
-    }
-    .active{
-        background-color: #0062cc;
-    }
+
 
     .game_map{
         height: 63vh;
@@ -84,9 +70,9 @@
     </div>
 
     <ul class="d_flex nav_list">
-        <button class="nav_item btn-primary active" data-menu=".star_map">星区</button>
-        <button class="nav_item btn-primary" data-menu=".galaxy_map">星系</button>
-        <button class="nav_item btn-primary" data-menu=".faction_map">派系</button>
+        <button class="nav_item map_change btn-primary active" data-menu=".star_map">星区</button>
+        <button class="nav_item map_change btn-primary" data-menu=".galaxy_map">星系</button>
+        <button class="nav_item map_change btn-primary" data-menu=".faction_map">派系</button>
     </ul>
 
 
@@ -100,13 +86,6 @@
         <div class="faction_map hidden"></div>
     </div>
 
-    <ul class="d_flex nav_list menu">
-        <button class="nav_item btn-primary active" data-menu=".menu_map">状态</button>
-        <button class="nav_item btn-primary" data-menu=".menu_cargo">货仓</button>
-        <button class="nav_item btn-primary" data-menu=".menu_fleet">舰队</button>
-        <button class="nav_item btn-primary" data-menu=".menu_base">基地</button>
-        <button class="nav_item btn-primary" data-menu=".menu_system">系统</button>
-    </ul>
 </div>
 
 <script>
