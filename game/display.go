@@ -13,5 +13,6 @@ func (s *Display) Show(msg string) {
 }
 
 func (s *Display) AutoShow(msg string) {
+
 	fmt.Println(msg)
 }

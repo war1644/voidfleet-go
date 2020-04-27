@@ -14,7 +14,7 @@ const Game = {
         {
             maskDom.style.display = 'none';
         }else{
-            maskDom.style.display = 'block';
+            maskDom.style.display = 'flex';
         }
         Game.mask = !Game.mask;
     },
@@ -132,13 +132,13 @@ const Game = {
         for (let k in events) {
             let msg = events[k];
             dom += `
-        <p class="small"><span class="badge badge-${msg.MsgType} badge-pill">${msg.MsgTypePill}</span>${msg.MsgText}</p>
+        <p class="small"><span class="badge badge_${msg.MsgType} badge_pill">${msg.MsgTypePill}</span>${msg.MsgText}</p>
         `;
         }
         gameMessageDom.innerHTML += dom;
-    //badge-info 信息
-    //badge-primary
-    //badge-success 任务
+    //badge_info 信息
+    //badge_primary
+    //badge_success 任务
     },
     starMapEvent:()=>{
         Event.add(".move-dom",(e)=>{
@@ -154,7 +154,7 @@ const Game = {
             if (data.hasOwnProperty(k)){
                 let info = data[k];
                 dom += `
-        <span class="badge badge-warning move-dom" data-name="${info.Name}" style="left: ${info.X}vw;top: ${info.Y}vh;">${info.Name}</span>
+        <span class="badge badge_warning move-dom" data-name="${info.Name}" style="left: ${info.X}vw;top: ${info.Y}vh;">${info.Name}</span>
         `;
             }
         }
@@ -166,8 +166,8 @@ const Game = {
         for (let k in galaxy) {
             let info = galaxy[k];
             dom += `
-        <span class="badge badge-warning move-dom" style="left: ${info[1]}vw;top: ${info[2]}vh;">
-             <b>${info[0]}</b>
+        <span class="badge badge_warning move-dom" style="left: ${info[1]}vw;top: ${info[2]}vh;">
+             ${info[0]}
         </span>
         `;
         }
@@ -180,16 +180,16 @@ const Game = {
         for (let k in items) {
             let info = items[k];
             dom += `
-        <li class="list-group-item list-group-item-action">
-                        <div class="row">
-                            <div class="col-10 border">
-                                <p>${info.Name}</p>
-                                <span>x ${info.Quantity}</span>
-                            </div>
-                            <div class="col-2 border align-content-center"><span class="badge badge-pill badge-warning">卖</span><span class="badge badge-pill badge-warning">扔</span></div>
-                        </div>
-                    </li>
-        `;
+                <li class="d_flex list-group-item list-group-item-action">
+                    <div>
+                        ${info.Name}
+                        <span class="item_quantity">* ${info.Quantity}</span>
+                    </div>
+                    <div class="">
+                        <span class="badge badge_pill badge_warning">使用</span>
+                        <span class="badge badge_pill badge_warning">丢弃</span>
+                    </div>
+                </li>`;
         }
         cargoListDom.innerHTML = dom;
     },
@@ -198,15 +198,17 @@ const Game = {
         for (let k in items) {
             let info = items[k];
             dom += `
-        <li class="list-group-item list-group-item-action">
-                        <div class="row">
-                            <div class="col-10 border">
-                                <p>${info.Name}</p>
-<!--                                <span>x ${info.Price}</span>-->
-                            </div>
-                        </div>
-                    </li>
-        `;
+<li class="d_flex list-group-item list-group-item-action">
+                    <div>
+                        ${info.Name}
+                        <span class="item_quantity">* ${info.Quantity}</span>
+                        <span class="item_price">* ${info.Price}</span>
+                    </div>
+                    <div class="">
+                        <span class="badge badge_pill badge_warning">使用</span>
+                        <span class="badge badge_pill badge_warning">丢弃</span>
+                    </div>
+                </li>`;
         }
         fleetListDom.innerHTML = dom;
     }

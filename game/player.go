@@ -139,7 +139,7 @@ func (s *Player) SellShip(newShip Ship) {
 	}
 }
 
-func (s *Player) SellGood(name string, number, price int) {
+func (s *Player) SellGoods(name string, number, price int) {
 	goods, ok := s.Cargo[name]
 	if !ok {
 		return
@@ -152,7 +152,7 @@ func (s *Player) SellGood(name string, number, price int) {
 	s.AddCredits(totalPrice)
 }
 
-func (s *Player) BuyGood(goods Goods) {
+func (s *Player) BuyGoods(goods Goods) {
 	totalPrice := goods.Price * goods.Quantity
 	surplus := s.Ship.Cargo - s.GoodsCount
 	if s.Money < totalPrice {

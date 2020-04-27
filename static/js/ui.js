@@ -2,11 +2,30 @@ const UI = {
     div: null,
     isShow: false,
     mapChange:(e)=>{
+        const selector = e.target.dataset.menu;
         console.log(e.target.dataset.menu);
+        const oldActiveDom = document.querySelector('.map_active');
+        const newActiveDom = e.target;
+        const oldActiveMapDom = document.querySelector(oldActiveDom.dataset.menu);
+        const newActiveMapDom = document.querySelector(selector);
+        oldActiveDom.classList.remove('map_active');
+        newActiveDom.classList.add("map_active");
+        oldActiveMapDom.classList.add('hidden');
+        newActiveMapDom.classList.remove("hidden");
+
 
     },
     menuChange:(e)=>{
-
+        const selector = e.target.dataset.menu;
+        console.log(selector);
+        const oldActiveDom = document.querySelector('.menu_active');
+        const newActiveDom = e.target;
+        const oldMenuDom = document.querySelector(oldActiveDom.dataset.menu);
+        const newMenuDom = document.querySelector(selector);
+        oldActiveDom.classList.remove('menu_active');
+        newActiveDom.classList.add("menu_active");
+        oldMenuDom.classList.add('hidden');
+        newMenuDom.classList.remove("hidden");
     },
 
 

@@ -1,10 +1,10 @@
 <style>
 
     #status_info{
-        padding: 10px;
+        padding: 6px;
         width: 100vw;
         height: 25vh;
-        font-size: 16px;
+        /*font-size: 16px;*/
         color: #aaa;
         box-sizing: border-box;
     }
@@ -36,6 +36,7 @@
         width: 200%;
     }
     .container{
+        color: beige;
         flex-direction: column;
     }
 
@@ -47,47 +48,93 @@
         display: none;
     }
 
-</style>
+    /*           cargo          */
+    .header{
+        height: 5vh;
+        line-height: 5vh;
+        text-align: center;
+        border: 5px solid rgba(25,157,255,0.8);
 
+    }
+    .list-group-item{
+        border: 1px solid beige;
+        justify-content: space-around;
+        height: 5vh;
+        line-height: 5vh;
+        margin-top: 1px;
+    }
+    .cargo_list,.fleet_list{
+        height: 62vh;
+        overflow: scroll;
+    }
+
+</style>
 <div class="container">
     <div id="status_info" class="d_flex">
         <div class="player_status">
 
         </div>
         <div class="game_message">
-            <p class="small"><span class="badge badge-info badge-pill">信息</span>到达:天狼星区-跳跃门</p>
+            <p class="small"><span class="badge badge_info badge_pill">信息</span>到达:天狼星区-跳跃门</p>
 
-            <p class="small"><span class="badge badge-primary badge-pill">新闻</span>海盗正在袭击:天狼星区-空间站</p>
+            <p class="small"><span class="badge badge_primary badge_pill">新闻</span>海盗正在袭击:天狼星区-空间站</p>
 
-            <p class="small"><span class="badge badge-primary badge-pill">新闻</span>天狼星区-空间站护卫舰队正在迎战</p>
+            <p class="small"><span class="badge badge_primary badge_pill">新闻</span>天狼星区-空间站护卫舰队正在迎战</p>
 
-            <p class="small"><span class="badge badge-primary badge-pill">新闻</span>海盗正在袭击:天狼星区-军事前哨</p>
+            <p class="small"><span class="badge badge_primary badge_pill">新闻</span>海盗正在袭击:天狼星区-军事前哨</p>
 
-            <p class="small"><span class="badge badge-primary badge-pill">新闻</span>天狼星区-军事前哨护卫舰队正在迎战</p>
+            <p class="small"><span class="badge badge_primary badge_pill">新闻</span>天狼星区-军事前哨护卫舰队正在迎战</p>
 
-            <p class="small"><span class="badge badge-primary badge-pill">新闻</span>天狼星区-空间站急缺矿石</p>
+            <p class="small"><span class="badge badge_primary badge_pill">新闻</span>天狼星区-空间站急缺矿石</p>
+        </div>
+    </div>
+    <div class="menu_map">
+        <ul class="d_flex nav_list">
+            <button class="nav_item map_change btn_primary map_active" data-menu=".star_map">星区</button>
+            <button class="nav_item map_change btn_primary" data-menu=".galaxy_map">星系</button>
+            <button class="nav_item map_change btn_primary" data-menu=".faction_map">派系</button>
+        </ul>
+        <div class="game_map">
+            <div class="star_map">
+
+            </div>
+            <div class="galaxy_map hidden">
+
+            </div>
+            <div class="faction_map hidden"></div>
         </div>
     </div>
 
-    <ul class="d_flex nav_list">
-        <button class="nav_item map_change btn-primary active" data-menu=".star_map">星区</button>
-        <button class="nav_item map_change btn-primary" data-menu=".galaxy_map">星系</button>
-        <button class="nav_item map_change btn-primary" data-menu=".faction_map">派系</button>
-    </ul>
+    <div class="menu_cargo hidden">
+        <h2 class="header">货仓</h2>
+        <ul class="cargo_list game_item_list">
 
-
-    <div class="game_map">
-        <div class="star_map">
-
-        </div>
-        <div class="galaxy_map hidden">
-
-        </div>
-        <div class="faction_map hidden"></div>
+        </ul>
     </div>
+
+    <div class="menu_fleet hidden">
+        <h2 class="header">舰队</h2>
+        <ul class="fleet_list game_item_list">
+
+        </ul>
+    </div>
+</div>
+
+<style>
+
+
+    /*.container{*/
+    /*    flex-direction: column;*/
+    /*    height: 100vh;*/
+    /*    color: beige;*/
+    /*}*/
+
+
+</style>
+<div class="container d_flex">
 
 </div>
 
-<script>
 
-</script>
+
+

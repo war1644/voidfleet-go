@@ -24,28 +24,28 @@ body {
     background-color: #343a40;
 }
 
-.badge-info {
+.badge_info {
     color: #fff;
     background-color: #17a2b8;
 }
 
-.badge-primary {
+.badge_primary {
     color: #fff;
     background-color: #007bff;
 }
 
-.badge-success {
+.badge_success {
     color: #fff;
     background-color: #28a745;
 }
 
-.badge-pill {
+.badge_pill {
     padding-right: .6em;
     padding-left: .6em;
     border-radius: 10rem;
 }
 
-.badge-warning {
+.badge_warning {
     color: #212529;
     background-color: #ffc107;
 }
@@ -62,7 +62,7 @@ body {
 }
 
 
-.btn-primary {
+.btn_primary {
     color: #fff;
     background-color: #007bff;
     border-color: #007bff;
@@ -90,7 +90,7 @@ body {
     font-size: 18px;
 }
 
-.active {
+.active,.map_active,.menu_active {
     background-color: #0062cc;
 }
 
@@ -139,20 +139,20 @@ body {
     /*background: rgba(43, 208, 142, 0.53);*/
 }
 
+
+
+.cur_player{
+    background-color: greenyellow;
+}
+
 .small {
-    font-size: 80%;
-    font-weight: 400
+    font-size: 85%;
 }
 
 .x-small {
     font-size: 60%;
-    font-weight: 400
 }
 
-.xx-small {
-    font-size: 50%;
-    font-weight: 400
-}
 
 .list-group-item {
     padding: 0;

@@ -101,4 +101,11 @@ func (s *Game) randEvent() {
 	p4 := s.Galaxy.GetRandPlanet(4)
 	s.Event.NewMsg(s.MsgType[1], s.Galaxy.CurrentName+"-"+p4.Name+p4.Goods[12].Name+"滞销")
 
+	s.Event.NewMsg(s.MsgType[1], "星区警卫队正在前往"+s.Galaxy.CurrentName+p1.Name+",坐标:"+p1.X+","+p1.Y)
+
+	//{MsgType:"info",MsgTypePill:"信息",Msg:`你已进入${data.Galaxy}-${data.Name},坐标:${data.X},${data.Y}`},
+	//{MsgType:"primary",MsgTypePill:"新闻",Msg:`海盗正在袭击${data.Galaxy}-${data.Name},坐标:${data.X},${data.Y}`},
+	//{MsgType:"primary",MsgTypePill:"新闻",Msg:`星区警卫队正在前往${data.Galaxy}-${data.Name},坐标:${data.X},${data.Y}`},
+	//{MsgType:"success",MsgTypePill:"任务",Msg:`test任务,坐标:0,0`}
+
 }
